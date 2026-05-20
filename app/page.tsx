@@ -85,10 +85,10 @@ const ALL_CATEGORIES = ["ALL", ...Array.from(new Set(products.map(p => p.categor
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
-  const [currentView, setCurrentView] = useState("home");
+  const [currentView, setCurrentView] = useState<string>("home");
   const [cart, setCart] = useState<Product[]>([]);
-  const [selectedPayment, setSelectedPayment] = useState("Visa");
-  const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [selectedPayment, setSelectedPayment] = useState<string>("Visa");
+  const [activeCategory, setActiveCategory] = useState<string>("ALL");
 
   const addToCart = (product: Product) => {
     setCart([...cart, product]);
