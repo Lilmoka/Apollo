@@ -86,7 +86,9 @@ const ALL_CATEGORIES = ["ALL", ...Array.from(new Set(products.map(p => p.categor
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState<boolean>(false);
-  const [currentView, setCurrentView] = useState<string>("home");
+  type View = "home" | "shop" | "about" | "checkout";
+
+const [currentView, setCurrentView] = useState<View>("home");
   const [cart, setCart] = useState<Product[]>([]);
   const [selectedPayment, setSelectedPayment] = useState<string>("Visa");
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -114,7 +116,7 @@ export default function Home() {
     return products.filter(p => p.category === selectedCategory);
   }, [selectedCategory]);
 
-  const navigateToView = (view: string) => {
+  const navigateToView = (view: View) => {
     setCurrentView(view);
     window.scrollTo(0, 0); 
   };
