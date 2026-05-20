@@ -85,7 +85,7 @@ const products: Product[] = [
 const ALL_CATEGORIES = ["ALL", ...Array.from(new Set(products.map(p => p.category)))];
 
 export default function Home() {
-  const [hasEntered, setHasEntered] = useState(false);
+  const [hasEntered, setHasEntered] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<string>("home");
   const [cart, setCart] = useState<Product[]>([]);
   const [selectedPayment, setSelectedPayment] = useState<string>("Visa");
@@ -206,16 +206,16 @@ export default function Home() {
            background-image: url('/Background (2).jpg');
            background-size: cover;
            background-position: center;
-           filter: blur(15px); /* نسبة ضبابية 50% تقريباً بالـ CSS */
-           opacity: 0.85; /* شفافية بسيطة */
-           z-index: -1; /* عشان تكون ورا كل حاجة */
+           filter: blur(15px);
+           opacity: 0.85; 
+           z-index: -1; 
         }
 
         /* Navbar & Top Banner Integration */
         .hero-banner { 
            width: 100%; 
            min-height: 85vh; 
-           background-image: url('/Panner 2 (2).jpg'); /* صورة الشمس هي البانر العلوي */
+           background-image: url('/Panner 2 (2).jpg'); 
            background-size: cover; 
            background-position: center 25%; 
            position: relative;
@@ -232,7 +232,7 @@ export default function Home() {
         .nav-link { color: #fff; text-decoration: none; font-weight: 500; font-size: 15px; cursor: pointer; transition: color 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .nav-link:hover, .nav-link.active { color: #d4af37; font-weight: 700; }
         
-        /* Product Cards - تصميم زجاجي أنيق عشان يبين السحاب وراه */
+        /* Product Cards */
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
         
         .large-products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
@@ -331,7 +331,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* NAVBAR للصفحات التانية (زجاجي عشان يبين السحاب وراه) */}
+      {/* NAVBAR للصفحات التانية */}
       {currentView !== "home" && (
          <>
           <div className="top-bar" style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(10px)" }}>
