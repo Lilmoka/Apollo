@@ -7,35 +7,89 @@ type Product = {
   name: string;
   price: number;
   image: string;
-  isTopSelling?: boolean; // تحديد المنتجات الأكثر مبيعاً
+  category: string;
+  isTopSelling?: boolean;
 };
 
+// --- تشكيلة المتجر الكاملة (52 قطعة) بالـ Categories ---
 const products: Product[] = [
-  { id: 1, name: "RM Watch", price: 800, image: "/watch.jpg", isTopSelling: true },
-  { id: 2, name: "Premium Wallet", price: 500, image: "/wallet.jpg", isTopSelling: true },
-  { id: 3, name: "Fashion Belt", price: 400, image: "/belt.jpg" },
-  { id: 4, name: "Sunglasses", price: 300, image: "/sunglasses.jpg", isTopSelling: true },
-  { id: 5, name: "Gold Ring", price: 200, image: "/ring.jpg" },
-  { id: 6, name: "Bracelet", price: 500, image: "/braclet.jpg", isTopSelling: true },
-  { id: 7, name: "Chain", price: 300, image: "/chain.jpg" },
-  { id: 8, name: "Gold Chain", price: 300, image: "/gold_chain.jpg" },
-  { id: 9, name: "Iced Bracelet", price: 200, image: "/iced_bracelet.jpg" }
+  // Rings
+  { id: 1, name: "Royal Lion Gold Ring", price: 350, image: "/RING 1.jpg", category: "RINGS" },
+  { id: 2, name: "Imperial Lion Signet", price: 400, image: "/RING 2.jpg", category: "RINGS", isTopSelling: true },
+  { id: 3, name: "Textured Gold Band", price: 300, image: "/RING 3.jpg", category: "RINGS" },
+  { id: 4, name: "Vintage Engraved Ring", price: 450, image: "/Light Weight engraving hand carved 22k Yellow Gold Ring Indian Men Gold Ring Jewelry Handmade Edwardian Vintage Design Jewelry , K2234.jpg", category: "RINGS" },
+  { id: 6, name: "Venus Sculpted Silver", price: 400, image: "/“VENUS RING”.jpg", category: "RINGS" },
+  { id: 7, name: "Greek Onyx Signet", price: 450, image: "/Men's Silver Black Onyx Signet Ring - Vintage Greek Ring - Sterling Silver Ring - Classic Jewelry for Him - 925 Sterling Silver - Mens Ring.jpg", category: "RINGS", isTopSelling: true },
+  { id: 20, name: "Silver Iced Cluster", price: 400, image: "/HarlemBling Solid 925 Sterling Silver Men's Ring Iced Out King Crown Ring - Icy Hip Hop Round Cluster Men's Ring - Large 18mm (12).jpg", category: "RINGS", isTopSelling: true },
+  { id: 42, name: "Gold Diamond Square", price: 450, image: "/j_24665272_1732152954923_bg_processed.jpg", category: "RINGS" },
+
+  // Chains
+  { id: 5, name: "Onyx Pillar Pendant", price: 500, image: "/download (7).jpg", category: "CHAINS" },
+  { id: 12, name: "Silver Spider Pendant", price: 250, image: "/download (4).jpg", category: "CHAINS" },
+  { id: 13, name: "Silver Lightning", price: 200, image: "/homens Colar de pingente relâmpago.jpg", category: "CHAINS" },
+  { id: 14, name: "Classic 3mm Rope", price: 250, image: "/ROPE CHAIN 3MM.jpg", category: "CHAINS" },
+  { id: 15, name: "Gold Lion Necklace", price: 350, image: "/1pc Fashionable Lion Head Charm Necklace For Men For Daily Decoration Copper Jewelry.jpg", category: "CHAINS" },
+  { id: 16, name: "Iced Silver Cuban", price: 500, image: "/Men's necklace｜Mens accessory& Mens jewelry｜outfits with necklace｜necklace outfits.jpg", category: "CHAINS", isTopSelling: true },
+  { id: 17, name: "18K Gold Iced Cuban", price: 500, image: "/Men's 18K Gold ICED Cuban Chain.jpg", category: "CHAINS", isTopSelling: true },
+  { id: 18, name: "Diamond Boss Crown", price: 400, image: "/1pc Glamorous Zinc Alloy Rhinestone Letter & Crown Pendant Necklace For Men For Daily Decoration, For Jewelry Gift And Party.jpg", category: "CHAINS" },
+  { id: 19, name: "Iced #23 Pendant", price: 450, image: "/1pc #23 Shaped Pendant With 9mm Cuban Chain, Classic Retro Punk Necklace, Unisex Hip Hop Numeral Pendant Necklace, Suitable For Daily Wear Or Party, 2 Chain Styles Available.jpg", category: "CHAINS" },
+  { id: 37, name: "Silver Iced Cuban", price: 450, image: "/8mm-iced-cuban-link-chain-white-gold-adamans-1_1600x.jpg", category: "CHAINS" },
+  { id: 40, name: "Gold Iced Tiger", price: 500, image: "/71OSi37XnCL._AC_UF350,350_QL80_.jpg", category: "CHAINS", isTopSelling: true },
+
+  // Bracelets
+  { id: 8, name: "Classic Cuban Gold", price: 500, image: "/download (6).jpg", category: "BRACELETS" },
+  { id: 9, name: "Engraved Vision", price: 350, image: "/Браслет с глазами🥷😍.jpg", category: "BRACELETS" },
+  { id: 10, name: "Iced Crystal Bracelet", price: 500, image: "/download (5).jpg", category: "BRACELETS" },
+  { id: 11, name: "Silver Tennis Bracelet", price: 350, image: "/Men's Silver Iced Out Tennis Bracelet, Hip Hop Zircon Bracelet for Men, Bling Jewelry.jpg", category: "BRACELETS" },
+  { id: 38, name: "Silver Iced Cuban", price: 400, image: "/images (2).jpg", category: "BRACELETS" },
+  { id: 39, name: "Textured Link Bracelet", price: 350, image: "/1.jpg", category: "BRACELETS" },
+
+  // Fragrances
+  { id: 21, name: "1 Million EDT", price: 1000, image: "/Paco Rabanne One Million edt H 5ml.jpg", category: "FRAGRANCES" },
+  { id: 22, name: "Born In Roma Intense", price: 1000, image: "/VALENTINO BORN IN ROMA INTENSE EAU DE PARFUM SPRAY 100ML.jpg", category: "FRAGRANCES", isTopSelling: true },
+  { id: 23, name: "Versace Eros", price: 1000, image: "/Versace Eros.jpg", category: "FRAGRANCES" },
+
+  // Eyewear
+  { id: 24, name: "LV Clash Square", price: 400, image: "/Louis Vuitton® LV Clash Square Sunglasses.jpg", category: "EYEWEAR", isTopSelling: true },
+  { id: 25, name: "Crimson Rimless", price: 400, image: "/Men Tinted Lens Rimless Fashion Glasses With Glasses Rope.jpg", category: "EYEWEAR" },
+  { id: 26, name: "Gold Panther Rimless", price: 400, image: "/Men Rimless Fashion Glasses.jpg", category: "EYEWEAR" },
+  { id: 27, name: "Y2K Black Square", price: 400, image: "/1 Peça Óculos de Sol de Praia Fashion Y2K Preto de Armação Quadrada para Homens e Mulheres Acessórios Vintage de Proteção Solar.jpg", category: "EYEWEAR" },
+  { id: 43, name: "Blue Tint Sunglasses", price: 400, image: "/69ae3cffafec8744ba0dbb88.jpg", category: "EYEWEAR" },
+
+  // Belts & Wallets
+  { id: 28, name: "Gold Rhinestone Belt", price: 500, image: "/Rhinestone Decor Belt.jpg", category: "LEATHER GOODS" },
+  { id: 29, name: "White Crystal Belt", price: 500, image: "/download (3).jpg", category: "LEATHER GOODS" },
+  { id: 30, name: "AMIRI White Belt", price: 500, image: "/download (2).jpg", category: "LEATHER GOODS" },
+  { id: 31, name: "Gucci Signature Belt", price: 500, image: "/download (1).jpg", category: "LEATHER GOODS" },
+  { id: 32, name: "Gucci Canvas Belt", price: 500, image: "/Gucci - 4cm Leather-Trimmed Monogrammed Coated-Canvas Belt.jpg", category: "LEATHER GOODS", isTopSelling: true },
+  { id: 33, name: "LV x NBA Wallet", price: 500, image: "/Louis Vuitton Bag LV xNBA Virgil Abloh Multiple Wallet M80105.jpg", category: "LEATHER GOODS" },
+  { id: 34, name: "LV Eclipse Wallet", price: 500, image: "/Louis Vuitton 100% Coatead Canvas Black Multiple Wallet Monogram Eclipse Canvas One size - 16% off.jpg", category: "LEATHER GOODS" },
+  { id: 44, name: "LV Gradient Wallet", price: 500, image: "/images (1).jpg", category: "LEATHER GOODS" },
+  { id: 45, name: "LV Red Monogram Belt", price: 500, image: "/s-l1200.jpg", category: "LEATHER GOODS" },
+
+  // Watches
+  { id: 35, name: "RM Sapphire Watch", price: 800, image: "/download.jpg", category: "WATCHES" },
+  { id: 36, name: "RM McLaren Blue", price: 800, image: "/Richard Mille watch.jpg", category: "WATCHES", isTopSelling: true },
+  { id: 41, name: "RM Smiley Edition", price: 800, image: "/105451_MAIN_5920.jpg", category: "WATCHES", isTopSelling: true },
+  { id: 46, name: "RM Orange Carbon", price: 800, image: "/images.jpg", category: "WATCHES" },
+
+  // Bags
+  { id: 47, name: "Gucci Signature Bag", price: 500, image: "/image_1.jpg", category: "BAGS", isTopSelling: true },
+  { id: 48, name: "Goyard Duffle Bag", price: 500, image: "/image_2.jpg", category: "BAGS" },
+  { id: 49, name: "LV Embossed Keepall", price: 500, image: "/image_3.jpg", category: "BAGS" },
+  { id: 50, name: "Gray LV Keepall", price: 500, image: "/image_4.jpg", category: "BAGS" },
+  { id: 51, name: "Gray LV Backpack", price: 500, image: "/image_5.jpg", category: "BAGS", isTopSelling: true },
+  { id: 52, name: "Black LV Backpack", price: 500, image: "/image_6.jpg", category: "BAGS" }
 ];
 
+const ALL_CATEGORIES = ["ALL", ...Array.from(new Set(products.map(p => p.category)))];
+
 export default function Home() {
-  // State للتحكم في الصفحة الحالية (home, shop, about, checkout)
+  const [hasEntered, setHasEntered] = useState(false);
   const [currentView, setCurrentView] = useState("home");
   const [cart, setCart] = useState<Product[]>([]);
   const [selectedPayment, setSelectedPayment] = useState("Visa");
-  const [dropIndex, setDropIndex] = useState(0);
-
-  // تحديث تلقائي لقسم New Drop كل 3 ثواني
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDropIndex((prevIndex) => (prevIndex + 1) % products.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
+  const [activeCategory, setActiveCategory] = useState("ALL");
 
   const addToCart = (product: Product) => {
     setCart([...cart, product]);
@@ -51,309 +105,181 @@ export default function Home() {
     return cart.reduce((sum, item) => sum + item.price, 0);
   }, [cart]);
 
-  // تصفية المنتجات الأكثر مبيعاً لعرضها في الصفحة الرئيسية
   const topSellingProducts = useMemo(() => {
     return products.filter(p => p.isTopSelling);
   }, []);
 
+  const filteredProducts = useMemo(() => {
+    if (activeCategory === "ALL") return products;
+    return products.filter(p => p.category === activeCategory);
+  }, [activeCategory]);
+
+  const navigateToView = (view: string) => {
+    setCurrentView(view);
+    window.scrollTo(0, 0); 
+  };
+
+  // --- شاشة البداية (Splash Screen) ---
+  if (!hasEntered) {
+    return (
+      <div style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#050505", 
+        position: "relative",
+        overflow: "hidden",
+        fontFamily: "'Courier New', Courier, monospace"
+      }}>
+        <div style={{ position: "absolute", top: "10%", left: "20%", width: "60vw", height: "60vw", background: "radial-gradient(circle, rgba(0, 102, 255, 0.4) 0%, rgba(0,0,0,0) 70%)", filter: "blur(80px)", borderRadius: "50%", zIndex: 1 }}></div>
+        <div style={{ position: "absolute", bottom: "-10%", right: "-10%", width: "50vw", height: "50vw", background: "radial-gradient(circle, rgba(200, 200, 200, 0.1) 0%, rgba(0,0,0,0) 70%)", filter: "blur(100px)", borderRadius: "50%", zIndex: 1 }}></div>
+
+        <div style={{ zIndex: 10, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
+          
+          <h1 style={{ 
+            fontSize: "clamp(80px, 20vw, 250px)", 
+            fontWeight: 900, 
+            letterSpacing: "-10px", 
+            color: "#F9F6F0", 
+            margin: 0,
+            textShadow: "0 0 40px rgba(0, 102, 255, 0.5)",
+            animation: "pulseText 3s infinite alternate"
+          }}>
+            APOLLO
+          </h1>
+
+          <button 
+            onClick={() => setHasEntered(true)}
+            style={{
+              padding: "16px 45px",
+              background: "transparent",
+              color: "#F9F6F0",
+              border: "2px solid #F9F6F0",
+              fontSize: "14px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              borderRadius: "999px",
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              marginTop: "30px",
+              transition: "all 0.3s ease",
+            }}
+            onMouseOver={(e) => { e.currentTarget.style.background = "#F9F6F0"; e.currentTarget.style.color = "#000"; }}
+            onMouseOut={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#F9F6F0"; }}
+          >
+            EXPLORE COLLECTION
+          </button>
+        </div>
+        <style dangerouslySetInnerHTML={{__html: `@keyframes pulseText { 0% { opacity: 0.9; transform: scale(0.98); } 100% { opacity: 1; transform: scale(1.02); } }`}} />
+      </div>
+    );
+  }
+
+  // --- الموقع الأساسي ---
   return (
     <main
-      className="bg-texture"
       style={{
-        backgroundColor: "#121212",
-        color: "#e0e0e0",
+        backgroundColor: "#F9F6F0", // اللون الكريمي للصورة
+        color: "#000",
         minHeight: "100vh",
-        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+        fontFamily: "'Courier New', Courier, monospace", // خط الآلة الكاتبة (Brutalist)
       }}
     >
       <style dangerouslySetInnerHTML={{__html: `
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { overflow-x: hidden; width: 100%; scroll-behavior: smooth; }
         
-        .bg-texture {
-          background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-        }
-        
-        /* تأثيرات وحركات السيرفر اللامعة */
-        .hover-card { transition: all 0.4s ease; }
-        .hover-card:hover { border-color: #666 !important; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        .hover-img { transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        .hover-card:hover .hover-img { transform: scale(1.04); }
-        .btn-luxury { transition: all 0.3s ease; }
-        .btn-luxury:hover { background-color: #333 !important; color: #fff !important; }
-        .btn-primary { transition: all 0.3s ease; }
-        .btn-primary:hover { background-color: #d4af37 !important; color: #000 !important; }
-        
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-content { display: inline-flex; white-space: nowrap; animation: marquee 20s linear infinite; }
-        
-        @keyframes imageFade { from { opacity: 0.6; filter: blur(1px); } to { opacity: 1; filter: blur(0); } }
-        .animate-img { animation: imageFade 0.6s ease-out forwards; }
-        
-        .nav-link { position: relative; color: #aaa; text-decoration: none; transition: color 0.3s; cursor: pointer; font-weight: 600; }
-        .nav-link.active { color: #fff; font-weight: 800; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background-color: #fff; transition: width 0.3s ease; }
-        .nav-link.active::after { width: 100%; }
-        .nav-link:hover::after { width: 100%; }
+        .fade-in { animation: fadeIn 0.6s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* الشاشات الكبيرة */
-        .navbar-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; }
-        .nav-desktop-links { display: flex; gap: 35px; align-items: center; font-size: 13px; letter-spacing: 1.5px; }
-        .hero-section { display: grid; grid-template-columns: 1fr 1.2fr 0.8fr; gap: 18px; padding: 24px; }
-        .hero-box { min-height: 700px; padding: 40px; }
-        .hero-image-box { min-height: 700px; }
-        .hero-right-col { display: grid; grid-template-rows: 1fr 1fr; gap: 18px; }
-        .main-title { font-size: 90px; line-height: 0.9; }
-        .shop-padding { padding: 60px 40px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        /* Product Card Styling */
+        .editorial-img { transition: opacity 0.4s ease; mix-blend-mode: multiply; }
+        .product-card:hover .editorial-img { opacity: 0.8; transform: scale(1.02); }
+        .product-img-box { background: #EFEBE1; height: 350px; display: flex; align-items: center; justify-content: center; position: relative; transition: 0.3s; }
         
-        /* المقاس الجديد المخفض للمربعات ليعطي مظهر نظيف وفخم */
-        .product-img-wrap { height: 320px; } 
-        
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 40px; }
+        /* Buttons - جميع الزراير باللون الكحلي الفخم */
+        .btn-buy { color: #001a33; font-size: 24px; font-weight: bold; border-bottom: 3px solid #001a33; padding-bottom: 2px; cursor: pointer; display: inline-block; transition: all 0.3s; }
+        .btn-buy:hover { padding-right: 15px; letter-spacing: 1px; }
 
-        /* شاشات الموبايل والتابلت */
+        .cat-btn { background: transparent; border: 1px solid #001a33; color: #001a33; padding: 10px 20px; border-radius: 99px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: bold; transition: 0.3s; white-space: nowrap; }
+        .cat-btn.active { background: #001a33; color: #F9F6F0; }
+        .cat-btn:hover:not(.active) { background: #001a33; color: #F9F6F0; }
+
+        .pill-nav { background: rgba(249, 246, 240, 0.9); padding: 10px 20px; border-radius: 99px; display: inline-flex; gap: 15px; font-size: 14px; font-weight: bold; border: 1px solid #001a33; color: #001a33; cursor: pointer; }
+
+        .hero-banner { background-color: #000; color: #F9F6F0; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; padding: 20px; text-align: center; }
+        .hero-text { font-size: clamp(100px, 25vw, 300px); font-weight: 900; letter-spacing: -10px; line-height: 0.8; margin-top: auto; }
+
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 50px 20px; padding: 40px; }
+        
         @media (max-width: 768px) {
-          .navbar-container { padding: 12px 16px; flex-direction: row; justify-content: space-between; }
-          .nav-desktop-links { gap: 15px; font-size: 11px; }
-          .logo-text { font-size: 22px !important; }
-          .logo-img { height: 30px !important; }
-          
-          .hero-section { display: flex; flex-direction: column; gap: 12px; padding: 12px; }
-          .hero-box { min-height: auto; padding: 25px 20px; }
-          .main-title { font-size: 48px !important; line-height: 1; margin-bottom: 15px !important; }
-          .hero-image-box { height: 380px; min-height: auto; }
-          .hero-right-col { display: flex; flex-direction: column; gap: 12px; }
-          .slider-box { height: 320px; }
-          
-          .shop-padding { padding: 40px 16px; }
-          .shop-header { flex-direction: column; align-items: flex-start !important; gap: 8px; }
-          .shop-header h2 { font-size: 40px !important; }
-          .shop-header p { text-align: left !important; font-size: 13px !important; }
-          
-          .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-          .product-card { padding: 12px !important; }
-          .product-img-wrap { height: 175px; } /* تصغير المربعات للموبايل */
-          .product-title { font-size: 14px !important; margin-bottom: 4px !important; }
-          .product-price { font-size: 13px !important; margin-bottom: 12px !important; }
-          .btn-add-cart { padding: 10px !important; font-size: 11px !important; }
-
-          .about-grid { display: flex; flex-direction: column; padding: 16px; gap: 12px; }
-          .about-title { font-size: 45px !important; }
-          
-          .checkout-container { padding: 20px 16px !important; }
-          .checkout-item { flex-direction: column; align-items: flex-start !important; gap: 12px; }
-          .checkout-item button { width: 100%; }
-          .payment-grid { grid-template-columns: 1fr 1fr !important; }
+          .products-grid { grid-template-columns: 1fr 1fr; padding: 20px; gap: 30px 15px; }
+          .product-img-box { height: 220px; }
+          .btn-buy { font-size: 16px; }
+          .hero-text { letter-spacing: -5px; }
         }
       `}} />
 
-      {/* NAVBAR */}
-      <nav
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 1000,
-          background: "rgba(18, 18, 18, 0.95)",
-          backdropFilter: "blur(16px)",
-          borderBottom: "1px solid #2a2a2a",
-        }}
-      >
-        <div className="navbar-container">
-          {/* LOGO */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }} onClick={() => setCurrentView("home")}>
-            <img src="/logo.jpg" alt="Apollo" className="logo-img" style={{ height: "40px", borderRadius: "4px" }} />
-            <h1 className="logo-text" style={{ fontSize: "32px", fontWeight: 900, letterSpacing: "2px", color: "#fff" }}>
-              APOLLO
-            </h1>
-          </div>
+      {/* HEADER / HERO SECTION */}
+      <div className="hero-banner">
+        {/* اللوجو في الخلفية مع Blur (حل مشكلة السواد) */}
+        <div style={{ 
+          position: "absolute", 
+          top: "-30px", left: "-30px", right: "-30px", bottom: "-30px", // ممدودة شوية عشان الحواف الضبابية
+          backgroundImage: "url(/logo.jpg)", 
+          backgroundSize: "cover", 
+          backgroundPosition: "center", 
+          filter: "blur(20px)", 
+          zIndex: 1, 
+          opacity: 0.5 // خفيفة عشان النص يفضل مقروء
+        }} />
 
-          {/* Navigation links targeting the Views */}
-          <div className="nav-desktop-links">
-            <span onClick={() => setCurrentView("home")} className={`nav-link ${currentView === "home" ? "active" : ""}`}>HOME</span>
-            <span onClick={() => setCurrentView("shop")} className={`nav-link ${currentView === "shop" ? "active" : ""}`}>SHOP</span>
-            <span onClick={() => setCurrentView("about")} className={`nav-link ${currentView === "about" ? "active" : ""}`}>ABOUT</span>
-            
-            <button
-              onClick={() => setCurrentView("checkout")}
-              className="btn-primary"
-              style={{
-                background: currentView === "checkout" ? "#d4af37" : "#fff",
-                color: "#000",
-                border: "none",
-                padding: "8px 16px",
-                cursor: "pointer",
-                fontWeight: 900,
-                borderRadius: "999px",
-                fontSize: "12px",
-              }}
-            >
-              CART ({cart.length})
-            </button>
+        {/* Top Navbar Area */}
+        <div style={{ position: "absolute", top: 20, left: 20, right: 20, display: "flex", justifyContent: "space-between", zIndex: 10 }}>
+          <img src="/logo.jpg" alt="Logo" style={{ height: "30px", borderRadius: "4px" }} />
+          <div style={{ display: "flex", alignItems: "center" }}>
+             <button 
+                onClick={() => navigateToView("checkout")} 
+                style={{ background: "#001a33", color: "#F9F6F0", border: "none", padding: "10px 20px", borderRadius: "99px", fontWeight: "bold", fontFamily: "inherit", cursor: "pointer" }}>
+               CART ({cart.length})
+             </button>
           </div>
         </div>
-      </nav>
 
-      {/* VIEW: HOME (الصفحة الرئيسية) */}
+        {/* Giant Overlapping Text */}
+        <h1 className="hero-text" style={{ zIndex: 10, position: "relative" }}>APOLLO</h1>
+
+        {/* Pill Navigation (الزراير الكحلي) */}
+        <div className="pill-nav" style={{ zIndex: 10, position: "relative", marginTop: "20px", marginBottom: "20px" }}>
+          <span onClick={() => navigateToView("home")} style={{ textDecoration: currentView === "home" ? "underline" : "none" }}>Home</span> | 
+          <span onClick={() => navigateToView("shop")} style={{ textDecoration: currentView === "shop" ? "underline" : "none" }}>Shop</span> | 
+          <span onClick={() => navigateToView("about")} style={{ textDecoration: currentView === "about" ? "underline" : "none" }}>About</span>
+        </div>
+      </div>
+
+      {/* --- HOME VIEW --- */}
       {currentView === "home" && (
         <div className="fade-in">
-          {/* HERO */}
-          <section style={{ borderBottom: "1px solid #2a2a2a" }}>
-            <div className="hero-section">
-              {/* LEFT */}
-              <div
-                className="hero-box"
-                style={{
-                  border: "1px solid #2a2a2a",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  background: "#161616",
-                }}
-              >
-                <div>
-                  <p style={{ fontSize: "11px", marginBottom: "15px", letterSpacing: "3px", fontWeight: 700, color: "#888" }}>
-                    PREMIUM MEN ACCESSORIES
-                  </p>
-                  <h2 className="main-title" style={{ fontWeight: 900, color: "#fff", textTransform: "uppercase", marginBottom: "30px" }}>
-                    Built<br />To<br />Stand<br />Out
-                  </h2>
-                  <p style={{ fontSize: "15px", lineHeight: "1.6", color: "#999", maxWidth: "400px" }}>
-                    Minimal luxury pieces inspired by modern streetwear culture, brutalist design and timeless aesthetics.
-                  </p>
-                </div>
-                <button
-                  onClick={() => setCurrentView("shop")}
-                  className="btn-luxury"
-                  style={{
-                    marginTop: "30px", padding: "18px", background: "#fff", color: "#000", border: "none",
-                    fontWeight: 900, cursor: "pointer", fontSize: "13px", letterSpacing: "2px", width: "100%"
-                  }}
-                >
-                  EXPLORE COLLECTION
-                </button>
-              </div>
-
-              {/* CENTER IMAGE */}
-              <div className="hover-card hero-image-box" style={{ border: "1px solid #2a2a2a", overflow: "hidden", position: "relative" }}>
-                <img src="/watch.jpg" className="hover-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                <div style={{
-                  position: "absolute", bottom: "15px", left: "15px", background: "rgba(0,0,0,0.8)",
-                  backdropFilter: "blur(5px)", padding: "8px 15px", color: "#fff", fontSize: "11px", letterSpacing: "1px"
-                }}>
-                  SIGNATURE RM WATCH
-                </div>
-              </div>
-
-              {/* RIGHT SIDE */}
-              <div className="hero-right-col">
-                {/* NEW DROP */}
-                <div className="hover-card slider-box" style={{ border: "1px solid #2a2a2a", background: "#161616", display: "flex", flexDirection: "column" }}>
-                  <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-                    <img key={dropIndex} src={products[dropIndex].image} className="hover-img animate-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  <div style={{ padding: "20px", background: "#161616" }}>
-                    <p style={{ fontSize: "11px", letterSpacing: "2px", color: "#888", marginBottom: "5px" }}>
-                      NEW DROP <br/>
-                      <span style={{ color: "#fff", fontSize: "14px", fontWeight: "bold", display: "block", marginTop: "4px" }}>
-                        {products[dropIndex].name}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ border: "1px solid #2a2a2a", padding: "30px", background: "#161616", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                  <div>
-                    <p style={{ fontSize: "11px", letterSpacing: "3px", marginBottom: "10px", color: "#888" }}>APOLLO® 2026</p>
-                    <h3 style={{ fontSize: "32px", lineHeight: "1.2", fontWeight: 900, color: "#fff" }}>ELEVATED<br />DETAILS</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* NEON OUTLINE MARQUEE */}
-          <section style={{ overflow: "hidden", borderBottom: "1px solid #2a2a2a", background: "#050505", padding: "20px 0" }}>
-            <div className="marquee-content">
-              <h1 style={{ fontSize: "clamp(50px, 10vw, 100px)", fontWeight: 900, letterSpacing: "-1px", color: "transparent", WebkitTextStroke: "2px #fff", textShadow: "0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4)", margin: "0 20px" }}>
-                APOLLO ACCESSORIES • LUXURY REDEFINED • 
-              </h1>
-              <h1 style={{ fontSize: "clamp(50px, 10vw, 100px)", fontWeight: 900, letterSpacing: "-1px", color: "transparent", WebkitTextStroke: "2px #fff", textShadow: "0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4)", margin: "0 20px" }}>
-                APOLLO ACCESSORIES • LUXURY REDEFINED • 
-              </h1>
-            </div>
-          </section>
-
-          {/* TOP SELLING PRODUCTS SECTION */}
-          <section className="shop-padding">
-            <div className="shop-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "30px" }}>
-              <h2 style={{ fontSize: "50px", fontWeight: 900, color: "#fff", lineHeight: "1" }}>TOP SELLING</h2>
-              <p style={{ maxWidth: "350px", lineHeight: "1.6", color: "#999", fontSize: "14px" }}>
-                Our most popular pieces crafted to redefine luxury aesthetics.
-              </p>
-            </div>
-
-            <div className="products-grid">
-              {topSellingProducts.map((product) => (
-                <div key={product.id} className="hover-card" style={{ border: "1px solid #2a2a2a", background: "#161616", overflow: "hidden" }}>
-                  <div className="product-img-wrap" style={{ overflow: "hidden" }}>
-                    <img src={product.image} className="hover-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  <div className="product-card" style={{ padding: "20px" }}>
-                    <h3 className="product-title" style={{ fontSize: "20px", marginBottom: "8px", fontWeight: 800, color: "#fff" }}>
-                      {product.name}
-                    </h3>
-                    <p className="product-price" style={{ marginBottom: "20px", fontSize: "15px", color: "#aaa", fontWeight: 600 }}>
-                      EGP {product.price}
-                    </p>
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="btn-luxury btn-add-cart"
-                      style={{ width: "100%", padding: "14px", background: "#fff", color: "#000", border: "none", cursor: "pointer", fontWeight: 900, letterSpacing: "1px" }}
-                    >
-                      ADD TO CART
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </div>
-      )}
-
-      {/* VIEW: SHOP (صفحة المتجر الكاملة) */}
-      {currentView === "shop" && (
-        <div className="shop-padding fade-in">
-          <div className="shop-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "40px" }}>
-            <h2 style={{ fontSize: "60px", fontWeight: 900, color: "#fff", lineHeight: "1" }}>OUR SHOP</h2>
-            <p style={{ maxWidth: "350px", lineHeight: "1.6", color: "#999", fontSize: "14px" }}>
-              Browsing all 9 premium items engineered with architectural minimalism.
-            </p>
+          <div style={{ padding: "50px 40px 10px" }}>
+            <h2 style={{ fontSize: "clamp(40px, 8vw, 80px)", fontWeight: "normal", letterSpacing: "-2px", color: "#001a33" }}>Bestseller Now</h2>
           </div>
-
+          
           <div className="products-grid">
-            {products.map((product) => (
-              <div key={product.id} className="hover-card" style={{ border: "1px solid #2a2a2a", background: "#161616", overflow: "hidden" }}>
-                <div className="product-img-wrap" style={{ overflow: "hidden" }}>
-                  <img src={product.image} className="hover-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            {topSellingProducts.slice(0, 8).map((product) => (
+              <div key={product.id} className="product-card" style={{ display: "flex", flexDirection: "column" }}>
+                <div className="product-img-box">
+                  <img src={product.image} className="editorial-img" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+                  <span style={{ position: "absolute", top: "15px", right: "15px", fontSize: "20px", color: "#001a33" }}>♥</span>
                 </div>
-                <div className="product-card" style={{ padding: "20px" }}>
-                  <h3 className="product-title" style={{ fontSize: "20px", marginBottom: "8px", fontWeight: 800, color: "#fff" }}>
-                    {product.name}
-                  </h3>
-                  <p className="product-price" style={{ marginBottom: "20px", fontSize: "15px", color: "#aaa", fontWeight: 600 }}>
-                    EGP {product.price}
-                  </p>
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="btn-luxury btn-add-cart"
-                    style={{ width: "100%", padding: "14px", background: "#fff", color: "#000", border: "none", cursor: "pointer", fontWeight: 900, letterSpacing: "1px" }}
-                  >
-                    ADD TO CART
-                  </button>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "15px", fontSize: "14px", textTransform: "uppercase", fontWeight: "bold", color: "#001a33" }}>
+                  <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "75%" }}>{product.name}</span>
+                  <span>${product.price}</span>
+                </div>
+                <div style={{ marginTop: "20px", textAlign: "right" }}>
+                   <span className="btn-buy" onClick={() => addToCart(product)}>BUY NOW &rarr;</span>
                 </div>
               </div>
             ))}
@@ -361,115 +287,115 @@ export default function Home() {
         </div>
       )}
 
-      {/* VIEW: ABOUT (صفحة من نحن الفخمة الصغيرة للتواصل) */}
-      {currentView === "about" && (
-        <div className="shop-padding fade-in" style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <div style={{ border: "1px solid #2a2a2a", background: "#161616", padding: "50px 30px", textAlign: "center" }}>
-            <p style={{ letterSpacing: "3px", fontSize: "11px", color: "#888", marginBottom: "15px" }}>ABOUT APOLLO</p>
-            <h2 style={{ fontSize: "45px", fontWeight: 900, color: "#fff", marginBottom: "25px", textTransform: "uppercase" }}>
-              Modern Luxury Aesthetics
-            </h2>
-            <p style={{ fontSize: "15px", lineHeight: "1.8", color: "#aaa", maxWidth: "600px", margin: "0 auto 40px" }}>
-              APOLLO creates premium accessories with bold silhouettes, architectural minimalism, and editorial luxury inspiration tailored for the modern man.
-            </p>
+      {/* --- SHOP VIEW (With Filter Categories) --- */}
+      {currentView === "shop" && (
+        <div className="fade-in">
+          <div style={{ padding: "50px 40px 20px" }}>
+            <h2 style={{ fontSize: "clamp(40px, 8vw, 80px)", fontWeight: "normal", letterSpacing: "-2px", marginBottom: "30px", color: "#001a33" }}>Collection</h2>
             
-            {/* CONTACT CARD */}
-            <div style={{ borderTop: "1px solid #2a2a2a", paddingTop: "40px", maxWidth: "450px", margin: "0 auto", textAlign: "left" }}>
-              <h3 style={{ fontSize: "18px", color: "#fff", marginBottom: "20px", fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase", textAlign: "center" }}>
-                Customer Support & Contact
-              </h3>
-              
-              <div style={{ background: "#1a1a1a", border: "1px solid #333", padding: "20px", borderRadius: "4px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                <p style={{ fontSize: "14px", color: "#aaa" }}>
-                  <strong style={{ color: "#fff" }}>Phone:</strong> 0112441902
-                </p>
-                <p style={{ fontSize: "14px", color: "#aaa" }}>
-                  <strong style={{ color: "#fff" }}>Email:</strong> itsmahmoudmagdy@gmail.com
-                </p>
-              </div>
+            {/* Scrollable Categories Row */}
+            <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingBottom: "15px", scrollbarWidth: "none" }}>
+               {ALL_CATEGORIES.map(cat => (
+                 <button 
+                    key={cat} 
+                    className={`cat-btn ${activeCategory === cat ? 'active' : ''}`}
+                    onClick={() => setActiveCategory(cat)}
+                 >
+                   {cat}
+                 </button>
+               ))}
             </div>
+          </div>
+
+          <div className="products-grid">
+            {filteredProducts.map((product) => (
+              <div key={product.id} className="product-card" style={{ display: "flex", flexDirection: "column" }}>
+                <div className="product-img-box">
+                  <img src={product.image} className="editorial-img" style={{ width: "90%", height: "90%", objectFit: "contain" }} />
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "15px", fontSize: "14px", textTransform: "uppercase", fontWeight: "bold", color: "#001a33" }}>
+                  <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "75%" }}>{product.name}</span>
+                  <span>${product.price}</span>
+                </div>
+                <div style={{ marginTop: "20px", textAlign: "right" }}>
+                   <span className="btn-buy" onClick={() => addToCart(product)}>BUY NOW &rarr;</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       )}
 
-      {/* VIEW: CHECKOUT (صفحة الدفع المستقلة بالكامل) */}
+      {/* --- ABOUT VIEW --- */}
+      {currentView === "about" && (
+        <div className="fade-in" style={{ padding: "80px 40px", textAlign: "center", minHeight: "70vh", color: "#001a33" }}>
+           <h2 style={{ fontSize: "clamp(60px, 10vw, 120px)", letterSpacing: "-5px", marginBottom: "30px", fontWeight: 900 }}>The Studio</h2>
+           <p style={{ maxWidth: "600px", margin: "0 auto 50px", fontSize: "18px", lineHeight: "1.8", fontWeight: "bold" }}>
+             APOLLO represents the intersection of brutalist architecture and modern street luxury. Crafted for the bold.
+           </p>
+           
+           <div style={{ border: "2px solid #001a33", padding: "40px", maxWidth: "500px", margin: "0 auto", background: "#EFEBE1" }}>
+              <p style={{ fontSize: "24px", fontWeight: "900", marginBottom: "20px", letterSpacing: "-1px" }}>CONTACT US</p>
+              <p style={{ fontSize: "18px", marginBottom: "15px", fontWeight: "bold" }}>T: 0112441902</p>
+              <p style={{ fontSize: "16px", fontWeight: "bold" }}>E: itsmahmoudmagdy@gmail.com</p>
+           </div>
+        </div>
+      )}
+
+      {/* --- CHECKOUT VIEW --- */}
       {currentView === "checkout" && (
-        <div className="shop-padding fade-in">
-          <div className="checkout-container" style={{ border: "1px solid #2a2a2a", background: "#161616", padding: "40px", maxWidth: "800px", margin: "0 auto" }}>
-            <h2 style={{ fontSize: "40px", fontWeight: 900, marginBottom: "30px", color: "#fff" }}>SECURE CHECKOUT</h2>
+        <div className="fade-in" style={{ padding: "60px 40px", maxWidth: "900px", margin: "0 auto", minHeight: "70vh", color: "#001a33" }}>
+           <h2 style={{ fontSize: "50px", letterSpacing: "-2px", borderBottom: "3px solid #001a33", paddingBottom: "20px", marginBottom: "40px", fontWeight: 900 }}>BAG ({cart.length})</h2>
 
-            {cart.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "40px 0", borderTop: "1px solid #333" }}>
-                <p style={{ color: "#777", fontSize: "16px", marginBottom: "20px" }}>Your shopping cart is currently empty.</p>
-                <button onClick={() => setCurrentView("shop")} className="btn-luxury" style={{ padding: "12px 24px", background: "#fff", color: "#000", border: "none", fontWeight: 900, cursor: "pointer" }}>
-                  GO TO SHOP
-                </button>
-              </div>
-            ) : (
-              <>
-                {cart.map((item, index) => (
-                  <div key={index} className="checkout-item" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid #333", background: "#1a1a1a", padding: "15px", marginBottom: "10px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                      <img src={item.image} style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "4px" }} />
-                      <div>
-                        <h3 style={{ marginBottom: "5px", fontWeight: 800, fontSize: "16px", color: "#fff" }}>{item.name}</h3>
-                        <p style={{ color: "#aaa", fontWeight: 600, fontSize: "14px" }}>EGP {item.price}</p>
-                      </div>
+           {cart.length === 0 ? (
+             <div style={{ textAlign: "center", padding: "40px 0" }}>
+                <p style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "30px" }}>Your bag is empty.</p>
+                <span className="btn-buy" onClick={() => navigateToView("shop")}>Continue Shopping &rarr;</span>
+             </div>
+           ) : (
+             <div>
+               {cart.map((item, index) => (
+                 <div key={index} style={{ display: "flex", alignItems: "center", borderBottom: "1px solid #ccc", paddingBottom: "20px", marginBottom: "20px" }}>
+                    <div style={{ background: "#EFEBE1", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", marginRight: "20px" }}>
+                       <img src={item.image} style={{ width: "80%", height: "80%", objectFit: "contain", mixBlendMode: "multiply" }} />
                     </div>
-                    <button
-                      onClick={() => removeFromCart(index)}
-                      style={{ padding: "10px 15px", background: "transparent", color: "#ff4444", border: "1px solid #ff4444", cursor: "pointer", fontWeight: 700, fontSize: "12px" }}
-                    >
-                      REMOVE
+                    <div style={{ flex: 1 }}>
+                       <p style={{ fontWeight: "900", textTransform: "uppercase", fontSize: "18px" }}>{item.name}</p>
+                       <p style={{ fontSize: "16px", marginTop: "5px", fontWeight: "bold" }}>${item.price}</p>
+                    </div>
+                    <button onClick={() => removeFromCart(index)} style={{ background: "transparent", color: "#001a33", border: "1px solid #001a33", padding: "8px 15px", borderRadius: "99px", cursor: "pointer", fontWeight: "bold", fontFamily: "inherit" }}>
+                      Remove
                     </button>
-                  </div>
-                ))}
+                 </div>
+               ))}
 
-                <div style={{ marginTop: "30px", borderTop: "1px solid #333", paddingTop: "30px" }}>
-                  <h3 style={{ fontSize: "30px", marginBottom: "25px", fontWeight: 900, color: "#fff" }}>TOTAL ORDER: EGP {total}</h3>
+               <div style={{ textAlign: "right", marginTop: "50px" }}>
+                  <p style={{ fontSize: "36px", fontWeight: "900", marginBottom: "30px", letterSpacing: "-1px" }}>TOTAL: ${total}</p>
                   
-                  <p style={{ marginBottom: "15px", fontSize: "12px", color: "#888", letterSpacing: "2px" }}>SELECT PAYMENT METHOD</p>
-                  <div className="payment-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: "10px", marginBottom: "30px" }}>
-                    {["Visa", "Mastercard", "InstaPay", "Cash"].map((method) => (
-                      <button
-                        key={method} onClick={() => setSelectedPayment(method)}
-                        style={{
-                          padding: "15px", border: selectedPayment === method ? "2px solid #fff" : "1px solid #333",
-                          background: selectedPayment === method ? "#fff" : "#1a1a1a", color: selectedPayment === method ? "#000" : "#aaa",
-                          cursor: "pointer", fontWeight: 800, fontSize: "14px"
-                        }}
-                      >
+                  <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end", marginBottom: "40px", flexWrap: "wrap" }}>
+                    {["Visa", "Mastercard", "InstaPay", "Cash"].map(method => (
+                      <button key={method} onClick={() => setSelectedPayment(method)} className={`cat-btn ${selectedPayment === method ? 'active' : ''}`}>
                         {method}
                       </button>
                     ))}
                   </div>
 
-                  <button className="btn-luxury" style={{ width: "100%", padding: "18px", background: "#fff", color: "#000", border: "none", fontSize: "16px", fontWeight: 900, cursor: "pointer", letterSpacing: "1px" }}>
-                    CONFIRM & PAY NOW WITH {selectedPayment.toUpperCase()}
+                  <button style={{ background: "#001a33", color: "#F9F6F0", border: "none", padding: "20px 40px", fontSize: "18px", fontWeight: "bold", cursor: "pointer", width: "100%", maxWidth: "450px", fontFamily: "inherit" }}>
+                     CHECKOUT WITH {selectedPayment.toUpperCase()} &rarr;
                   </button>
-                </div>
-              </>
-            )}
-          </div>
+               </div>
+             </div>
+           )}
         </div>
       )}
 
       {/* FOOTER */}
-      <footer style={{ background: "#050505", borderTop: "1px solid #1a1a1a", color: "#fff", padding: "50px 20px", textAlign: "center" }}>
-        <h2 style={{ fontSize: "28px", fontWeight: 900, marginBottom: "15px" }}>APOLLO</h2>
-        <p style={{ color: "#777", fontSize: "13px", marginBottom: "30px", maxWidth: "300px", margin: "0 auto 30px" }}>
-          Luxury accessories crafted for modern masculine aesthetics.
-        </p>
-        
-        <div style={{ display: "flex", justifyContent: "center", gap: "30px", fontSize: "13px", color: "#aaa", marginBottom: "30px" }}>
-          <span onClick={() => setCurrentView("home")} style={{ cursor: "pointer" }}>Home</span>
-          <span onClick={() => setCurrentView("shop")} style={{ cursor: "pointer" }}>Shop</span>
-          <span onClick={() => setCurrentView("about")} style={{ cursor: "pointer" }}>About</span>
-        </div>
-        
-        <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "20px", color: "#555", fontSize: "11px" }}>
-            © 2026 APOLLO ACCESSORIES. ALL RIGHTS RESERVED.
-        </div>
+      <footer style={{ borderTop: "2px solid #001a33", padding: "40px", marginTop: "60px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "20px", fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", color: "#001a33" }}>
+         <div>© 2026 APOLLO STUDIO</div>
+         <div style={{ display: "flex", gap: "30px" }}>
+            <span style={{ cursor: "pointer", textDecoration: "underline" }}>Instagram</span>
+            <span style={{ cursor: "pointer", textDecoration: "underline" }}>TikTok</span>
+         </div>
       </footer>
     </main>
   );
