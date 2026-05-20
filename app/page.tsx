@@ -63,6 +63,7 @@ const products: Product[] = [
   { id: 31, name: "Gucci Signature Belt", price: 500, image: "/download (1).jpg", category: "LEATHER GOODS" }, 
   { id: 32, name: "Gucci Canvas Belt", price: 500, image: "/Gucci - 4cm Leather-Trimmed Monogrammed Coated-Canvas Belt.jpg", category: "LEATHER GOODS", isTopSelling: true },
   { id: 33, name: "LV x NBA Wallet", price: 500, image: "/Louis Vuitton Bag LV xNBA Virgil Abloh Multiple Wallet M80105.jpg", category: "LEATHER GOODS" },
+  { id: 34, name: "LV Eclipse Wallet", price: 500, image: "/Louis Vuitton 100% Coatead Canvas Black Multiple Wallet Monogram Eclipse Canvas One size - 16% off.jpg", category: "LEATHER GOODS" },
   { id: 44, name: "LV Gradient Wallet", price: 500, image: "/images (1).jpg", category: "LEATHER GOODS" },
   { id: 45, name: "LV Red Monogram Belt", price: 500, image: "/s-l1200.jpg", category: "LEATHER GOODS" },
 
@@ -88,7 +89,7 @@ export default function Home() {
   const [currentView, setCurrentView] = useState<string>("home");
   const [cart, setCart] = useState<Product[]>([]);
   const [selectedPayment, setSelectedPayment] = useState<string>("Visa");
-  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
 
   const addToCart = (product: Product) => {
     setCart([...cart, product]);
@@ -205,16 +206,16 @@ export default function Home() {
            background-image: url('/Background (2).jpg');
            background-size: cover;
            background-position: center;
-           filter: blur(15px);
-           opacity: 0.85; 
-           z-index: -1; 
+           filter: blur(15px); /* نسبة ضبابية 50% تقريباً بالـ CSS */
+           opacity: 0.85; /* شفافية بسيطة */
+           z-index: -1; /* عشان تكون ورا كل حاجة */
         }
 
         /* Navbar & Top Banner Integration */
         .hero-banner { 
            width: 100%; 
            min-height: 85vh; 
-           background-image: url('/Panner 2 (2).jpg'); 
+           background-image: url('/Panner 2 (2).jpg'); /* صورة الشمس هي البانر العلوي */
            background-size: cover; 
            background-position: center 25%; 
            position: relative;
@@ -231,7 +232,7 @@ export default function Home() {
         .nav-link { color: #fff; text-decoration: none; font-weight: 500; font-size: 15px; cursor: pointer; transition: color 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .nav-link:hover, .nav-link.active { color: #d4af37; font-weight: 700; }
         
-        /* Product Cards */
+        /* Product Cards - تصميم زجاجي أنيق عشان يبين السحاب وراه */
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
         
         .large-products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
@@ -256,7 +257,7 @@ export default function Home() {
         .cat-btn { background: rgba(255,255,255,0.8); backdrop-filter: blur(5px); border: 1px solid transparent; border-radius: 99px; padding: 10px 20px; font-size: 14px; color: #333; cursor: pointer; transition: 0.3s; font-weight: bold; text-transform: uppercase; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .cat-btn.active, .cat-btn:hover { background: #001a33; color: #fff; border-color: #001a33; }
 
-        /* Golden Neon Marquee */
+        /* Golden Neon Marquee - بدون خلفية سوداء */
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .marquee-container { overflow: hidden; background: transparent; padding: 40px 0; margin-top: 40px; position: relative; z-index: 2; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
         .marquee-content { display: inline-flex; white-space: nowrap; animation: marquee 20s linear infinite; }
@@ -330,7 +331,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* NAVBAR للصفحات التانية */}
+      {/* NAVBAR للصفحات التانية (زجاجي عشان يبين السحاب وراه) */}
       {currentView !== "home" && (
          <>
           <div className="top-bar" style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(10px)" }}>
