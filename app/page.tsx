@@ -742,10 +742,13 @@ export default function Home() {
 
                       try {
                         // 🔗 ده الكود اللي بيبعت البيانات للينك بتاعك
-                        await fetch("https://sheetdb.io/api/v1/zujnqws8ngzts", {
+                        await fetch("https://sheetdb.io/api/v1/zujnqws8ngzts?sheet=Orders%20Log", {
                           method: "POST",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify(orderData)
+                          headers: { 
+                            "Accept": "application/json",
+                            "Content-Type": "application/json" 
+                          },
+                          body: JSON.stringify({ data: [orderData] })
                         });
                         
                         console.log("Saving to Google Sheets:", orderData);
