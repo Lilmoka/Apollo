@@ -15,7 +15,6 @@ type Product = {
 
 // --- تشكيلة المتجر الكاملة (52 قطعة) ---
 const products: Product[] = [
-  // Rings
   { id: 1, name: "Royal Lion Gold Ring", price: 350, image: "/RING 1.jpg", category: "RINGS", inStock: true },
   { id: 2, name: "Imperial Lion Signet", price: 400, image: "/RING 2.jpg", category: "RINGS", isTopSelling: true, inStock: true },
   { id: 3, name: "Textured Gold Band", price: 300, image: "/RING 3.jpg", category: "RINGS", inStock: false },
@@ -25,7 +24,6 @@ const products: Product[] = [
   { id: 20, name: "Silver Iced Cluster", price: 400, image: "/HarlemBling Solid 925 Sterling Silver Men's Ring Iced Out King Crown Ring - Icy Hip Hop Round Cluster Men's Ring - Large 18mm (12).jpg", category: "RINGS", isTopSelling: true, inStock: true },
   { id: 42, name: "Gold Diamond Square", price: 450, image: "/j_24665272_1732152954923_bg_processed.jpg", category: "RINGS", inStock: true },
 
-  // Chains
   { id: 5, name: "Onyx Pillar Pendant", price: 500, image: "/download (7).jpg", category: "CHAINS", inStock: true },
   { id: 12, name: "Silver Spider Pendant", price: 250, image: "/download (4).jpg", category: "CHAINS", inStock: true },
   { id: 13, name: "Silver Lightning", price: 200, image: "/homens Colar de pingente relâmpago.jpg", category: "CHAINS", inStock: true },
@@ -38,7 +36,6 @@ const products: Product[] = [
   { id: 37, name: "Silver Iced Cuban", price: 450, image: "/8mm-iced-cuban-link-chain-white-gold-adamans-1_1600x.jpg", category: "CHAINS", inStock: true },
   { id: 40, name: "Gold Iced Tiger", price: 500, image: "/71OSi37XnCL._AC_UF350,350_QL80_.jpg", category: "CHAINS", isTopSelling: true, inStock: true },
 
-  // Bracelets
   { id: 8, name: "Classic Cuban Gold", price: 500, image: "/download (6).jpg", category: "BRACELETS", inStock: true },
   { id: 9, name: "Engraved Vision", price: 350, image: "/Браслет с глазами🥷😍.jpg", category: "BRACELETS", inStock: true },
   { id: 10, name: "Iced Crystal Bracelet", price: 500, image: "/download (5).jpg", category: "BRACELETS", inStock: true },
@@ -46,19 +43,16 @@ const products: Product[] = [
   { id: 38, name: "Silver Iced Cuban", price: 400, image: "/images (2).jpg", category: "BRACELETS", inStock: true },
   { id: 39, name: "Textured Link Bracelet", price: 350, image: "/1.jpg", category: "BRACELETS", inStock: true },
 
-  // Fragrances
   { id: 21, name: "1 Million EDT", price: 1000, image: "/Paco Rabanne One Million edt H 5ml.jpg", category: "FRAGRANCES", inStock: true },
   { id: 22, name: "VALENTINO", price: 1000, image: "/VALENTINO BORN IN ROMA INTENSE EAU DE PARFUM SPRAY 100ML.jpg", category: "FRAGRANCES", isTopSelling: true, inStock: true },
   { id: 23, name: "Versace Eros", price: 1000, image: "/Versace Eros.jpg", category: "FRAGRANCES", inStock: true },
 
-  // Eyewear
   { id: 24, name: "LV Clash Square", price: 400, image: "/Louis Vuitton® LV Clash Square Sunglasses.jpg", category: "EYEWEAR", isTopSelling: true, inStock: true },
   { id: 25, name: "Crimson Rimless", price: 400, image: "/Men Tinted Lens Rimless Fashion Glasses With Glasses Rope.jpg", category: "EYEWEAR", inStock: true },
   { id: 26, name: "Gold Panther Rimless", price: 400, image: "/Men Rimless Fashion Glasses.jpg", category: "EYEWEAR", inStock: true },
   { id: 27, name: "Y2K Black Square", price: 400, image: "/1 Peça Óculos de Sol de Praia Fashion Y2K Preto de Armação Quadrada para Homens e Mulheres Acessórios Vintage de Proteção Solar.jpg", category: "EYEWEAR", inStock: true },
   { id: 43, name: "Blue Tint Sunglasses", price: 400, image: "/69ae3cffafec8744ba0dbb88.jpg", category: "EYEWEAR", inStock: true },
 
-  // Leather Goods
   { id: 28, name: "Gold Rhinestone Belt", price: 500, image: "/Rhinestone Decor Belt.jpg", category: "LEATHER GOODS", inStock: true },
   { id: 29, name: "White Crystal Belt", price: 500, image: "/download (3).jpg", category: "LEATHER GOODS", inStock: true },
   { id: 30, name: "AMIRI White Belt", price: 500, image: "/download (2).jpg", category: "LEATHER GOODS", inStock: true },
@@ -69,13 +63,11 @@ const products: Product[] = [
   { id: 44, name: "LV Gradient Wallet", price: 500, image: "/images (1).jpg", category: "LEATHER GOODS", inStock: true },
   { id: 45, name: "LV Red Monogram Belt", price: 500, image: "/s-l1200.jpg", category: "LEATHER GOODS", inStock: true },
 
-  // Watches
   { id: 35, name: "RM Sapphire Watch", price: 800, image: "/download.jpg", category: "WATCHES", inStock: true },
   { id: 36, name: "RM McLaren Blue", price: 800, image: "/Richard Mille watch.jpg", category: "WATCHES", isTopSelling: true, inStock: true },
   { id: 41, name: "RM Smiley Edition", price: 800, image: "/105451_MAIN_5920.jpg", category: "WATCHES", isTopSelling: true, inStock: true },
   { id: 46, name: "RM Orange Carbon", price: 800, image: "/images.jpg", category: "WATCHES", inStock: true },
 
-  // Bags
   { id: 47, name: "Gucci Signature Bag", price: 500, image: "/image_1.jpg", category: "BAGS", isTopSelling: true, inStock: true },
   { id: 48, name: "Goyard Duffle Bag", price: 500, image: "/image_2.jpg", category: "BAGS", inStock: false },
   { id: 49, name: "LV Embossed Keepall", price: 500, image: "/image_3.jpg", category: "BAGS", inStock: true },
@@ -86,7 +78,6 @@ const products: Product[] = [
 
 const ALL_CATEGORIES = ["ALL", ...Array.from(new Set(products.map((p) => p.category)))];
 
-// --- Translation Dictionary ---
 type TranslationDict = { [key: string]: string };
 
 const translations: Record<"en" | "ar", TranslationDict> = {
@@ -719,7 +710,7 @@ export default function Home() {
                       const randomId = "APOLLO-" + Math.floor(10000 + Math.random() * 90000);
                       
                       // =======================================================================
-                      // 🔗 GOOGLE SHEETS INTEGRATION (LIVE)
+                      // 🔗 GOOGLE SHEETS INTEGRATION
                       // =======================================================================
                       const orderData = {
                         "Order ID": randomId,
@@ -741,8 +732,7 @@ export default function Home() {
                       };
 
                       try {
-                        // 🔗 ده الكود اللي بيبعت البيانات للينك بتاعك
-                        await fetch("https://sheetdb.io/api/v1/zujnqws8ngzts?sheet=Orders%20Log", {
+                        await fetch("https://sheetdb.io/api/v1/zujnqws8ngzts", {
                           method: "POST",
                           headers: { 
                             "Accept": "application/json",
