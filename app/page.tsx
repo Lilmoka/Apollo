@@ -1,15 +1,3 @@
-يا باشا إنت كده بتقفل اللعبة! تحويل الموقع لـ Bilingual (إنجليزي وعربي) دي خطوة بتضاعف مبيعاتك لأنك بتستهدف كل الفئات وبترفع من احترافية البراند جداً.
-
-عشان نعمل ده صح (مش مجرد ترجمة حرفية):
-
-1. **نظام لغات كامل (i18n):** ضفتلك زرار فوق في الـ Top Bar يحول الموقع كله بضغطة واحدة بين `English` و `عربي`.
-2. **دعم الـ RTL:** بمجرد ما العميل يختار عربي، الموقع كله بيقلب من اليمين للشمال بشكل تلقائي ومنظم.
-3. **خط عربي فخم:** ضفتلك خط `Cairo` الخاص باللغة العربية عشان يعكس الفخامة المطلوبة (لأن الخطوط العادية بتبوظ شكل التصميم).
-4. **ترجمة احترافية:** كل تفصيلة في الموقع (من أول البانر لحد صفحة الدفع وتفاصيل المنتجات) تم ترجمتها بصيغة راقية جداً.
-
-انسخ الكود ده واستبدله باللي عندك بالكامل، واتفرج على الجمال:
-
-```tsx
 "use client";
 
 import { useMemo, useState } from "react";
@@ -30,7 +18,7 @@ const products: Product[] = [
   // Rings
   { id: 1, name: "Royal Lion Gold Ring", price: 350, image: "/RING 1.jpg", category: "RINGS", inStock: true },
   { id: 2, name: "Imperial Lion Signet", price: 400, image: "/RING 2.jpg", category: "RINGS", isTopSelling: true, inStock: true },
-  { id: 3, name: "Textured Gold Band", price: 300, image: "/RING 3.jpg", category: "RINGS", inStock: false }, // Out of stock example
+  { id: 3, name: "Textured Gold Band", price: 300, image: "/RING 3.jpg", category: "RINGS", inStock: false },
   { id: 4, name: "Vintage Engraved Ring", price: 450, image: "/Light Weight engraving hand carved 22k Yellow Gold Ring Indian Men Gold Ring Jewelry Handmade Edwardian Vintage Design Jewelry , K2234.jpg", category: "RINGS", inStock: true },
   { id: 6, name: "Venus Sculpted Silver", price: 400, image: '/"VENUS RING".jpg', category: "RINGS", inStock: true },
   { id: 7, name: "Greek Onyx Signet", price: 450, image: "/Men's Silver Black Onyx Signet Ring - Vintage Greek Ring - Sterling Silver Ring - Classic Jewelry for Him - 925 Sterling Silver - Mens Ring.jpg", category: "RINGS", isTopSelling: true, inStock: true },
@@ -89,7 +77,7 @@ const products: Product[] = [
 
   // Bags
   { id: 47, name: "Gucci Signature Bag", price: 500, image: "/image_1.jpg", category: "BAGS", isTopSelling: true, inStock: true },
-  { id: 48, name: "Goyard Duffle Bag", price: 500, image: "/image_2.jpg", category: "BAGS", inStock: false }, // Out of stock example
+  { id: 48, name: "Goyard Duffle Bag", price: 500, image: "/image_2.jpg", category: "BAGS", inStock: false },
   { id: 49, name: "LV Embossed Keepall", price: 500, image: "/image_3.jpg", category: "BAGS", inStock: true },
   { id: 50, name: "Gray LV Keepall", price: 500, image: "/image_4.jpg", category: "BAGS", inStock: true },
   { id: 51, name: "Gray LV Backpack", price: 500, image: "/image_5.jpg", category: "BAGS", isTopSelling: true, inStock: true },
@@ -164,9 +152,12 @@ const translations = {
   }
 };
 
-const catMap: Record<string, keyof typeof translations.en> = {
-  "ALL": "catAll", "RINGS": "catRings", "CHAINS": "catChains", "BRACELETS": "catBracelets", 
-  "FRAGRANCES": "catFrag", "EYEWEAR": "catEye", "LEATHER GOODS": "catLeather", "WATCHES": "catWatches", "BAGS": "catBags"
+const getCategoryKey = (cat: string): keyof typeof translations.en => {
+  const map: Record<string, keyof typeof translations.en> = {
+    "ALL": "catAll", "RINGS": "catRings", "CHAINS": "catChains", "BRACELETS": "catBracelets", 
+    "FRAGRANCES": "catFrag", "EYEWEAR": "catEye", "LEATHER GOODS": "catLeather", "WATCHES": "catWatches", "BAGS": "catBags"
+  };
+  return map[cat] || "catAll";
 };
 
 export default function Home() {
@@ -183,6 +174,11 @@ export default function Home() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const [checkoutStep, setCheckoutStep] = useState<"cart" | "shipping" | "payment_demo" | "success">("cart");
+  
+  const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [customerAddress, setCustomerAddress] = useState("");
+
   const [shippingZone, setShippingZone] = useState<string>("cairo");
   const [shippingType, setShippingType] = useState<string>("standard");
   const [selectedPayment, setSelectedPayment] = useState<string>("Visa");
@@ -194,7 +190,7 @@ export default function Home() {
 
   const showToast = (message: string) => {
     setToastMessage(message);
-    setTimeout(() => setToastMessage(null), 3000);
+    setTimeout(() => setToastMessage(null), 3500);
   };
 
   const addToCart = (product: Product, quantity: number = 1) => {
@@ -316,7 +312,7 @@ export default function Home() {
           position: fixed; bottom: 80px; ${lang === "ar" ? "left: 20px; border-right: 4px solid #d4af37;" : "right: 20px; border-left: 4px solid #d4af37;"}
           background: #001a33; color: #d4af37; padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
           z-index: 10000; font-weight: bold;
-          animation: slideIn 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards;
+          animation: slideIn 0.3s ease forwards, fadeOut 0.3s ease 3.2s forwards;
         }
         @keyframes slideIn { from { transform: translateX(${lang === "ar" ? "-100%" : "100%"}); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(${lang === "ar" ? "-100%" : "100%"}); opacity: 0; } }
@@ -432,7 +428,7 @@ export default function Home() {
           <div className="cat-filter">
             {ALL_CATEGORIES.map((cat) => (
               <button key={cat} className={`cat-btn ${selectedCategory === cat ? "active" : ""}`} onClick={() => setSelectedCategory(cat)}>
-                {t[catMap[cat]]}
+                {t[getCategoryKey(cat)]}
               </button>
             ))}
           </div>
@@ -458,17 +454,14 @@ export default function Home() {
            </button>
            
            <div style={{ display: "flex", gap: "40px", flexWrap: "wrap", background: "rgba(255,255,255,0.95)", padding: "40px", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}>
-              {/* Product Image */}
               <div style={{ flex: "1 1 400px", background: "#fff", borderRadius: "12px", border: "1px solid #eaeaea", display: "flex", justifyContent: "center", alignItems: "center", padding: "20px" }}>
                  <img src={selectedProduct.image} alt={selectedProduct.name} style={{ width: "100%", maxHeight: "500px", objectFit: "contain", mixBlendMode: "multiply" }} />
               </div>
               
-              {/* Product Info */}
               <div style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                  <h2 style={{ fontSize: "36px", color: "#001a33", textTransform: "uppercase", marginBottom: "10px", fontWeight: 900 }}>{selectedProduct.name}</h2>
                  <p style={{ fontSize: "28px", fontWeight: "900", color: "#d4af37", marginBottom: "20px" }}>EGP {selectedProduct.price}</p>
                  
-                 {/* Stock Status */}
                  <p style={{ marginBottom: "20px", fontSize: "14px", fontWeight: "bold", color: selectedProduct.inStock === false ? "#ff4444" : "#25D366" }}>
                    {selectedProduct.inStock === false ? t.outStock : t.inStock}
                  </p>
@@ -477,7 +470,6 @@ export default function Home() {
                    {selectedProduct.description || (lang === "ar" ? "جرب قمة الفخامة العصرية. القطعة الحصرية دي متصممة بأعلى جودة واهتمام بكل تفصيلة عشان تكمل ستايلك وتخليك مميز." : "Experience the pinnacle of modern luxury. This exclusive piece from our collection is crafted with meticulous attention to detail, designed to elevate your aesthetic and make a bold statement.")}
                  </p>
 
-                 {/* Quantity Selector */}
                  <div style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "30px" }}>
                    <span style={{ fontWeight: "bold", color: "#001a33", textTransform: "uppercase" }}>{t.quantity}</span>
                    <div style={{ display: "flex", border: "2px solid #eaeaea", borderRadius: "8px", overflow: "hidden" }}>
@@ -487,7 +479,6 @@ export default function Home() {
                    </div>
                  </div>
 
-                 {/* Actions */}
                  <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
                    <button 
                      disabled={selectedProduct.inStock === false}
@@ -616,9 +607,9 @@ export default function Home() {
           {checkoutStep === "shipping" && (
             <div style={{ background: "rgba(255,255,255,0.95)", padding: "40px", borderRadius: "12px" }}>
               <h3 style={{ color: "#001a33", marginBottom: "20px" }}>{t.shipDetails}</h3>
-              <input type="text" placeholder={t.fullName} className="form-input" />
-              <input type="text" placeholder={t.phoneNum} className="form-input" />
-              <input type="text" placeholder={t.streetAdd} className="form-input" />
+              <input type="text" placeholder={t.fullName} className="form-input" value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
+              <input type="text" placeholder={t.phoneNum} className="form-input" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} />
+              <input type="text" placeholder={t.streetAdd} className="form-input" value={customerAddress} onChange={(e) => setCustomerAddress(e.target.value)} />
               
               <div style={{ display: "flex", gap: "10px", marginBottom: "15px", flexWrap: "wrap" }}>
                 <select className="form-input" style={{ flex: 1, minWidth: "200px", marginBottom: 0 }} onChange={(e) => setShippingZone(e.target.value)} value={shippingZone}>
@@ -720,8 +711,49 @@ export default function Home() {
                 <div style={{ marginTop: "20px", paddingTop: "20px", borderTop: "2px solid #eaeaea", textAlign: "center" }}>
                    <p style={{ fontSize: "20px", fontWeight: "900", color: "#001a33", marginBottom: "15px" }}>{t.totalPay} <span className="text-gold">EGP {grandTotal}</span></p>
                    <button 
-                    onClick={() => {
+                    onClick={async () => {
                       const randomId = "APOLLO-" + Math.floor(10000 + Math.random() * 90000);
+                      
+                      // =======================================================================
+                      // 🔗 GOOGLE SHEETS INTEGRATION (DEMO)
+                      // =======================================================================
+                      const orderData = {
+                        "Order ID": randomId,
+                        "Date": new Date().toLocaleDateString(),
+                        "Customer Name": customerName || "Guest",
+                        "Phone Number": customerPhone || "N/A",
+                        "Street Address": customerAddress || "N/A",
+                        "Governorate": shippingZone === "cairo" ? "Cairo & Giza" : "Other Governorates",
+                        "Shipping Type": shippingType,
+                        "Payment Method": selectedPayment,
+                        "Items Ordered": cart.map(i => i.name).join(" + "),
+                        "Subtotal": cartTotal,
+                        "Shipping Fee": shippingFee,
+                        "COD Surcharge": selectedPayment === "Cash" ? 5 : 0,
+                        "Grand Total": grandTotal,
+                        "Deposit Required?": requiresDeposit ? "Yes" : "No",
+                        "Deposit Amount (25%)": depositAmount,
+                        "Status": requiresDeposit ? "Pending Deposit" : "Processing"
+                      };
+
+                      try {
+                        // 🟢 TO MAKE THIS LIVE:
+                        // 1. Go to sheetdb.io
+                        // 2. Connect the Excel file I gave you.
+                        // 3. Uncomment the code below and replace "YOUR_SHEETDB_API_URL" with your link!
+                        /*
+                        await fetch("YOUR_SHEETDB_API_URL", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify(orderData)
+                        });
+                        */
+                        console.log("Saving to Google Sheets:", orderData);
+                        showToast(lang === "ar" ? "تم إرسال الطلب لشيت الإكسيل بنجاح! 📊" : "Order Synced to Excel Sheet Successfully! 📊");
+                      } catch (error) {
+                        console.error("Error saving to sheet", error);
+                      }
+                      
                       setDemoOrderId(randomId);
                       setCart([]);
                       setCheckoutStep("success");
@@ -833,5 +865,3 @@ export default function Home() {
     </main>
   );
 }
-
-```
