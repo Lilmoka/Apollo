@@ -15,17 +15,15 @@ type Product = {
 
 // --- تشكيلة المتجر الكاملة (52 قطعة) ---
 const products: Product[] = [
-  // Rings
   { id: 1, name: "Royal Lion Gold Ring", price: 350, image: "/RING 1.jpg", category: "RINGS", inStock: true },
   { id: 2, name: "Imperial Lion Signet", price: 400, image: "/RING 2.jpg", category: "RINGS", isTopSelling: true, inStock: true },
-  { id: 3, name: "Textured Gold Band", price: 300, image: "/RING 3.jpg", category: "RINGS", inStock: false },
+  { id: 3, name: "Textured Gold Band", price: 300, image: "/RING 3.jpg", category: "RINGS", inStock: false }, 
   { id: 4, name: "Vintage Engraved Ring", price: 450, image: "/Light Weight engraving hand carved 22k Yellow Gold Ring Indian Men Gold Ring Jewelry Handmade Edwardian Vintage Design Jewelry , K2234.jpg", category: "RINGS", inStock: true },
   { id: 6, name: "Venus Sculpted Silver", price: 400, image: '/"VENUS RING".jpg', category: "RINGS", inStock: true },
   { id: 7, name: "Greek Onyx Signet", price: 450, image: "/Men's Silver Black Onyx Signet Ring - Vintage Greek Ring - Sterling Silver Ring - Classic Jewelry for Him - 925 Sterling Silver - Mens Ring.jpg", category: "RINGS", isTopSelling: true, inStock: true },
   { id: 20, name: "Silver Iced Cluster", price: 400, image: "/HarlemBling Solid 925 Sterling Silver Men's Ring Iced Out King Crown Ring - Icy Hip Hop Round Cluster Men's Ring - Large 18mm (12).jpg", category: "RINGS", isTopSelling: true, inStock: true },
   { id: 42, name: "Gold Diamond Square", price: 450, image: "/j_24665272_1732152954923_bg_processed.jpg", category: "RINGS", inStock: true },
 
-  // Chains
   { id: 5, name: "Onyx Pillar Pendant", price: 500, image: "/download (7).jpg", category: "CHAINS", inStock: true },
   { id: 12, name: "Silver Spider Pendant", price: 250, image: "/download (4).jpg", category: "CHAINS", inStock: true },
   { id: 13, name: "Silver Lightning", price: 200, image: "/homens Colar de pingente relâmpago.jpg", category: "CHAINS", inStock: true },
@@ -38,7 +36,6 @@ const products: Product[] = [
   { id: 37, name: "Silver Iced Cuban", price: 450, image: "/8mm-iced-cuban-link-chain-white-gold-adamans-1_1600x.jpg", category: "CHAINS", inStock: true },
   { id: 40, name: "Gold Iced Tiger", price: 500, image: "/71OSi37XnCL._AC_UF350,350_QL80_.jpg", category: "CHAINS", isTopSelling: true, inStock: true },
 
-  // Bracelets
   { id: 8, name: "Classic Cuban Gold", price: 500, image: "/download (6).jpg", category: "BRACELETS", inStock: true },
   { id: 9, name: "Engraved Vision", price: 350, image: "/Браслет с глазами🥷😍.jpg", category: "BRACELETS", inStock: true },
   { id: 10, name: "Iced Crystal Bracelet", price: 500, image: "/download (5).jpg", category: "BRACELETS", inStock: true },
@@ -46,19 +43,16 @@ const products: Product[] = [
   { id: 38, name: "Silver Iced Cuban", price: 400, image: "/images (2).jpg", category: "BRACELETS", inStock: true },
   { id: 39, name: "Textured Link Bracelet", price: 350, image: "/1.jpg", category: "BRACELETS", inStock: true },
 
-  // Fragrances
   { id: 21, name: "1 Million EDT", price: 1000, image: "/Paco Rabanne One Million edt H 5ml.jpg", category: "FRAGRANCES", inStock: true },
   { id: 22, name: "VALENTINO", price: 1000, image: "/VALENTINO BORN IN ROMA INTENSE EAU DE PARFUM SPRAY 100ML.jpg", category: "FRAGRANCES", isTopSelling: true, inStock: true },
   { id: 23, name: "Versace Eros", price: 1000, image: "/Versace Eros.jpg", category: "FRAGRANCES", inStock: true },
 
-  // Eyewear
   { id: 24, name: "LV Clash Square", price: 400, image: "/Louis Vuitton® LV Clash Square Sunglasses.jpg", category: "EYEWEAR", isTopSelling: true, inStock: true },
   { id: 25, name: "Crimson Rimless", price: 400, image: "/Men Tinted Lens Rimless Fashion Glasses With Glasses Rope.jpg", category: "EYEWEAR", inStock: true },
   { id: 26, name: "Gold Panther Rimless", price: 400, image: "/Men Rimless Fashion Glasses.jpg", category: "EYEWEAR", inStock: true },
   { id: 27, name: "Y2K Black Square", price: 400, image: "/1 Peça Óculos de Sol de Praia Fashion Y2K Preto de Armação Quadrada para Homens e Mulheres Acessórios Vintage de Proteção Solar.jpg", category: "EYEWEAR", inStock: true },
   { id: 43, name: "Blue Tint Sunglasses", price: 400, image: "/69ae3cffafec8744ba0dbb88.jpg", category: "EYEWEAR", inStock: true },
 
-  // Leather Goods
   { id: 28, name: "Gold Rhinestone Belt", price: 500, image: "/Rhinestone Decor Belt.jpg", category: "LEATHER GOODS", inStock: true },
   { id: 29, name: "White Crystal Belt", price: 500, image: "/download (3).jpg", category: "LEATHER GOODS", inStock: true },
   { id: 30, name: "AMIRI White Belt", price: 500, image: "/download (2).jpg", category: "LEATHER GOODS", inStock: true },
@@ -69,13 +63,11 @@ const products: Product[] = [
   { id: 44, name: "LV Gradient Wallet", price: 500, image: "/images (1).jpg", category: "LEATHER GOODS", inStock: true },
   { id: 45, name: "LV Red Monogram Belt", price: 500, image: "/s-l1200.jpg", category: "LEATHER GOODS", inStock: true },
 
-  // Watches
   { id: 35, name: "RM Sapphire Watch", price: 800, image: "/download.jpg", category: "WATCHES", inStock: true },
   { id: 36, name: "RM McLaren Blue", price: 800, image: "/Richard Mille watch.jpg", category: "WATCHES", isTopSelling: true, inStock: true },
   { id: 41, name: "RM Smiley Edition", price: 800, image: "/105451_MAIN_5920.jpg", category: "WATCHES", isTopSelling: true, inStock: true },
   { id: 46, name: "RM Orange Carbon", price: 800, image: "/images.jpg", category: "WATCHES", inStock: true },
 
-  // Bags
   { id: 47, name: "Gucci Signature Bag", price: 500, image: "/image_1.jpg", category: "BAGS", isTopSelling: true, inStock: true },
   { id: 48, name: "Goyard Duffle Bag", price: 500, image: "/image_2.jpg", category: "BAGS", inStock: false },
   { id: 49, name: "LV Embossed Keepall", price: 500, image: "/image_3.jpg", category: "BAGS", inStock: true },
@@ -87,7 +79,10 @@ const products: Product[] = [
 const ALL_CATEGORIES = ["ALL", ...Array.from(new Set(products.map((p) => p.category)))];
 
 // --- Translation Dictionary ---
-const translations = {
+// ده السطر السحري اللي بيقفل أي Error متعلق بالقاموس
+type TranslationDict = { [key: string]: string };
+
+const translations: Record<"en" | "ar", TranslationDict> = {
   en: {
     langToggle: "عربي ⌄",
     freeDel: "Free delivery on orders over",
@@ -117,6 +112,7 @@ const translations = {
     totalPay: "Total to Pay:", confirmPay: "CONFIRM & PAY", backShip: "Back to Shipping", orderSucc: "Order Placed Successfully!", orderIdIs: "Your Order ID is:", whatNext: "What happens next?", next1: "1. You will receive a confirmation message shortly.", next2: "2. Your order will be shipped via", next2_2: "Delivery.", next3: "3. You can track your shipment using your Order ID.",
     contShop: "CONTINUE SHOPPING", orOrderWa: "Or order directly via WhatsApp:", orderWa: "ORDER VIA WHATSAPP",
     footerDesc: "The ultimate destination for modern luxury aesthetics and premium accessories.", ourStory: "Our Story", storeLoc: "Store Location", followUs: "FOLLOW US", allRights: "© 2026 APOLLO. ALL RIGHTS RESERVED.",
+    customerCare: "CUSTOMER CARE",
     catAll: "ALL", catRings: "RINGS", catChains: "CHAINS", catBracelets: "BRACELETS", catFrag: "FRAGRANCES", catEye: "EYEWEAR", catLeather: "LEATHER GOODS", catWatches: "WATCHES", catBags: "BAGS"
   },
   ar: {
@@ -148,12 +144,13 @@ const translations = {
     totalPay: "الإجمالي للدفع:", confirmPay: "تأكيد ودفع", backShip: "العودة للشحن", orderSucc: "تم تأكيد الطلب بنجاح!", orderIdIs: "رقم طلبك هو:", whatNext: "إيه اللي هيحصل بعد كده؟", next1: "1. هتوصلك رسالة تأكيد قريب جداً.", next2: "2. طلبك هيتشحن عن طريق الشحن", next2_2: ".", next3: "3. تقدر تتابع شحنتك برقم الطلب.",
     contShop: "مواصلة التسوق", orOrderWa: "أو اطلب مباشرة عن طريق الواتساب:", orderWa: "اطلب عبر الواتساب",
     footerDesc: "وجهتك الأولى للفخامة العصرية والإكسسوارات الراقية.", ourStory: "قصتنا", storeLoc: "فروعنا", followUs: "تابعنا", allRights: "© 2026 APOLLO. جميع الحقوق محفوظة.",
+    customerCare: "خدمة العملاء",
     catAll: "الكل", catRings: "خواتم", catChains: "سلاسل", catBracelets: "أساور", catFrag: "عطور", catEye: "نظارات", catLeather: "جلديات", catWatches: "ساعات", catBags: "حقائب"
   }
 };
 
-const getCategoryKey = (cat: string): keyof typeof translations.en => {
-  const map: Record<string, keyof typeof translations.en> = {
+const getCategoryKey = (cat: string): string => {
+  const map: Record<string, string> = {
     "ALL": "catAll", "RINGS": "catRings", "CHAINS": "catChains", "BRACELETS": "catBracelets", 
     "FRAGRANCES": "catFrag", "EYEWEAR": "catEye", "LEATHER GOODS": "catLeather", "WATCHES": "catWatches", "BAGS": "catBags"
   };
