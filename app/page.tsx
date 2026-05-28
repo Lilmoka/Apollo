@@ -1,3 +1,15 @@
+يا باشا إنت كده بتقفل اللعبة! تحويل الموقع لـ Bilingual (إنجليزي وعربي) دي خطوة بتضاعف مبيعاتك لأنك بتستهدف كل الفئات وبترفع من احترافية البراند جداً.
+
+عشان نعمل ده صح (مش مجرد ترجمة حرفية):
+
+1. **نظام لغات كامل (i18n):** ضفتلك زرار فوق في الـ Top Bar يحول الموقع كله بضغطة واحدة بين `English` و `عربي`.
+2. **دعم الـ RTL:** بمجرد ما العميل يختار عربي، الموقع كله بيقلب من اليمين للشمال بشكل تلقائي ومنظم.
+3. **خط عربي فخم:** ضفتلك خط `Cairo` الخاص باللغة العربية عشان يعكس الفخامة المطلوبة (لأن الخطوط العادية بتبوظ شكل التصميم).
+4. **ترجمة احترافية:** كل تفصيلة في الموقع (من أول البانر لحد صفحة الدفع وتفاصيل المنتجات) تم ترجمتها بصيغة راقية جداً.
+
+انسخ الكود ده واستبدله باللي عندك بالكامل، واتفرج على الجمال:
+
+```tsx
 "use client";
 
 import { useMemo, useState } from "react";
@@ -34,6 +46,7 @@ const products: Product[] = [
   { id: 16, name: "Iced Silver Cuban", price: 500, image: "/Men's necklace｜Mens accessory& Mens jewelry｜outfits with necklace｜necklace outfits.jpg", category: "CHAINS", isTopSelling: true, inStock: true },
   { id: 17, name: "18K Gold Iced Cuban", price: 500, image: "/Men's 18K Gold ICED Cuban Chain.jpg", category: "CHAINS", isTopSelling: true, inStock: true },
   { id: 18, name: "Diamond Boss Crown", price: 400, image: "/1pc Glamorous Zinc Alloy Rhinestone Letter & Crown Pendant Necklace For Men For Daily Decoration, For Jewelry Gift And Party.jpg", category: "CHAINS", inStock: true },
+  { id: 19, name: "Iced #23 Pendant", price: 450, image: "/1pc #23 Shaped Pendant With 9mm Cuban Chain, Classic Retro Punk Necklace, Unisex Hip Hop Numeral Pendant Necklace, Suitable For Daily Wear Or Party, 2 Chain Styles Available.jpg", category: "CHAINS", inStock: true },
   { id: 37, name: "Silver Iced Cuban", price: 450, image: "/8mm-iced-cuban-link-chain-white-gold-adamans-1_1600x.jpg", category: "CHAINS", inStock: true },
   { id: 40, name: "Gold Iced Tiger", price: 500, image: "/71OSi37XnCL._AC_UF350,350_QL80_.jpg", category: "CHAINS", isTopSelling: true, inStock: true },
 
@@ -64,6 +77,7 @@ const products: Product[] = [
   { id: 31, name: "Gucci Signature Belt", price: 500, image: "/download (1).jpg", category: "LEATHER GOODS", inStock: true },
   { id: 32, name: "Gucci Canvas Belt", price: 500, image: "/Gucci - 4cm Leather-Trimmed Monogrammed Coated-Canvas Belt.jpg", category: "LEATHER GOODS", isTopSelling: true, inStock: true },
   { id: 33, name: "LV x NBA Wallet", price: 500, image: "/Louis Vuitton Bag LV xNBA Virgil Abloh Multiple Wallet M80105.jpg", category: "LEATHER GOODS", inStock: true },
+  { id: 34, name: "LV Eclipse Wallet", price: 500, image: "/Louis Vuitton 100% Coatead Canvas Black Multiple Wallet Monogram Eclipse Canvas One size - 16% off.jpg", category: "LEATHER GOODS", inStock: true },
   { id: 44, name: "LV Gradient Wallet", price: 500, image: "/images (1).jpg", category: "LEATHER GOODS", inStock: true },
   { id: 45, name: "LV Red Monogram Belt", price: 500, image: "/s-l1200.jpg", category: "LEATHER GOODS", inStock: true },
 
@@ -84,40 +98,109 @@ const products: Product[] = [
 
 const ALL_CATEGORIES = ["ALL", ...Array.from(new Set(products.map((p) => p.category)))];
 
+// --- Translation Dictionary ---
+const translations = {
+  en: {
+    langToggle: "عربي ⌄",
+    freeDel: "Free delivery on orders over",
+    callUs: "Call Us:",
+    home: "Home", shop: "Shop", contact: "Contact Us",
+    cart: "CART", divine: "Divine", aesthetics: "Aesthetics",
+    topSellers: "Top Sellers", topDesc: "Our most exclusive and demanding luxury pieces.",
+    hot: "Hot", addCart: "Add To Cart",
+    collection: "Collection", collDesc: "Browse through our exclusive items.",
+    aboutUs: "About Us", aboutTitle: "About", aboutDesc: "APOLLO creates premium accessories, signature fragrances, bags, and modern eyewear with bold silhouettes, architectural minimalism, and editorial luxury inspiration tailored for the modern man.",
+    backShop: "← BACK TO SHOP",
+    inStock: "✓ IN STOCK AND READY TO SHIP", outStock: "❌ OUT OF STOCK",
+    quantity: "Quantity:", buyNow: "BUY NOW",
+    contactTitle: "Contact", contactUs: "Us", contactDesc: "We're here to help! Reach out to us for any inquiries about your luxury items.",
+    phoneWa: "📞 Phone / WhatsApp:", email: "✉️ Email:",
+    shippingPol: "Shipping Policy", delTimes: "Delivery Times & Rates",
+    del1: "• Orders over EGP 1000: FREE Standard Shipping", del2: "• Cairo & Giza: EGP 50 (2 to 3 Business Days)", del3: "• Other Governorates: EGP 60 (2 to 3 Business Days)", del4: "• Express Shipping: Add EGP 20 (1 to 2 Business Days)",
+    orderProc: "Order Processing", orderProcDesc: "Orders are processed within 24 hours of placement. You will receive a tracking link via SMS/Email once your order is dispatched.",
+    returns: "Returns & Refunds", returnsTitle: "Returns", refundsTitle: "& Refunds", retPol: "14-Day Return Policy", retPolDesc: "You have 14 days after receiving your item to request a return or exchange. The item must be in its original condition, unworn, with tags and original packaging.",
+    refProc: "Refund Process", refProcDesc: "Once we receive and inspect your return, we will notify you. Approved refunds are automatically processed to your original payment method within 5-7 business days.",
+    trackOrder: "Track Order", trackOrderTitle: "Order", trackingTitle: "Tracking", enterOrderId: "Enter your Order ID to track your shipment",
+    shopCart: "Shopping", cartGold: "Cart", emptyCart: "Your cart is currently empty.", returnShop: "RETURN TO SHOP",
+    subtotal: "Subtotal:", proceedShip: "PROCEED TO SHIPPING", shipDetails: "Shipping Details", fullName: "Full Name", phoneNum: "Phone Number", streetAdd: "Street Address & Details", cairoGiza: "Cairo & Giza", otherGov: "Other Governorates",
+    standard: "Standard (2-3 Days)", express: "Express (+EGP 20, 1-2 Days)", shipping: "Shipping:", free: "FREE", qualifiedFree: "You qualified for Free Standard Shipping!", total: "Total:", backCart: "Back to Cart", proceedPay: "PROCEED TO PAYMENT",
+    selectPay: "Select Payment Method", cardNum: "Card Number", expiry: "Expiry", cvv: "CVV", transfer: "Transfer exactly", to: "to:", ipa: "Your InstaPay Address (IPA) or Phone",
+    cod: "Cash on Delivery (COD)", codFee: "An additional fee of EGP 5 is applied for COD orders.", depReq: "⚠️ Deposit Required", depDesc1: "Orders over EGP 1000 require a 25% deposit to confirm the order.", depAmount: "Deposit Amount:", depDesc2: "(Our team will contact you on WhatsApp to collect the deposit securely).",
+    totalPay: "Total to Pay:", confirmPay: "CONFIRM & PAY", backShip: "Back to Shipping", orderSucc: "Order Placed Successfully!", orderIdIs: "Your Order ID is:", whatNext: "What happens next?", next1: "1. You will receive a confirmation message shortly.", next2: "2. Your order will be shipped via", next2_2: "Delivery.", next3: "3. You can track your shipment using your Order ID.",
+    contShop: "CONTINUE SHOPPING", orOrderWa: "Or order directly via WhatsApp:", orderWa: "ORDER VIA WHATSAPP",
+    footerDesc: "The ultimate destination for modern luxury aesthetics and premium accessories.", ourStory: "Our Story", storeLoc: "Store Location", followUs: "FOLLOW US", allRights: "© 2026 APOLLO. ALL RIGHTS RESERVED.",
+    catAll: "ALL", catRings: "RINGS", catChains: "CHAINS", catBracelets: "BRACELETS", catFrag: "FRAGRANCES", catEye: "EYEWEAR", catLeather: "LEATHER GOODS", catWatches: "WATCHES", catBags: "BAGS"
+  },
+  ar: {
+    langToggle: "English ⌄",
+    freeDel: "شحن مجاني للطلبات فوق",
+    callUs: "كلمنا:",
+    home: "الرئيسية", shop: "المتجر", contact: "تواصل معنا",
+    cart: "السلة", divine: "أناقة", aesthetics: "خالدة",
+    topSellers: "الأكثر مبيعاً", topDesc: "أفخم القطع الحصرية والأكثر طلباً.",
+    hot: "نار", addCart: "أضف للسلة",
+    collection: "تشكيلتنا", collDesc: "تصفح منتجاتنا الحصرية.",
+    aboutUs: "عن الشركة", aboutTitle: "عن", aboutDesc: "أبولو بتقدملك إكسسوارات، عطور، حقائب، ونظارات عصرية مستوحاة من الفخامة الكلاسيكية ومصممة للرجل العصري.",
+    backShop: "→ العودة للمتجر",
+    inStock: "✓ متوفر وجاهز للشحن", outStock: "❌ غير متوفر",
+    quantity: "الكمية:", buyNow: "اشتري الآن",
+    contactTitle: "تواصل", contactUs: "معنا", contactDesc: "إحنا هنا عشان نساعدك! تواصل معانا لأي استفسار.",
+    phoneWa: "📞 تليفون / واتساب:", email: "✉️ الإيميل:",
+    shippingPol: "سياسة الشحن", delTimes: "مواعيد وأسعار الشحن",
+    del1: "• الطلبات فوق 1000 جنيه: شحن عادي مجاني", del2: "• القاهرة والجيزة: 50 جنيه (2 لـ 3 أيام عمل)", del3: "• محافظات أخرى: 60 جنيه (2 لـ 3 أيام عمل)", del4: "• شحن سريع: إضافة 20 جنيه (1 لـ 2 يوم عمل)",
+    orderProc: "تجهيز الطلبات", orderProcDesc: "بيتم تجهيز الطلبات خلال 24 ساعة. هتوصلك رسالة فيها لينك تتبع الشحنة أول ما تخرج من عندنا.",
+    returns: "الاسترجاع والاستبدال", returnsTitle: "الاسترجاع", refundsTitle: "والاستبدال", retPol: "سياسة الـ 14 يوم", retPolDesc: "تقدر تطلب استرجاع أو استبدال خلال 14 يوم من الاستلام. لازم المنتج يكون بحالته الأصلية ومتلبسش وبالتيكيت بتاعه.",
+    refProc: "خطوات الاسترداد", refProcDesc: "بعد ما نستلم المنتج ونفحصه، هنبلغك. المبالغ المستردة بترجع لطريقة الدفع الأصلية خلال 5 لـ 7 أيام عمل.",
+    trackOrder: "تتبع طلبك", trackOrderTitle: "تتبع", trackingTitle: "طلبك", enterOrderId: "دخل رقم الطلب عشان تتابع شحنتك",
+    shopCart: "سلة", cartGold: "المشتريات", emptyCart: "السلة بتاعتك فاضية حالياً.", returnShop: "العودة للمتجر",
+    subtotal: "المجموع:", proceedShip: "متابعة الشحن", shipDetails: "تفاصيل الشحن", fullName: "الاسم بالكامل", phoneNum: "رقم التليفون", streetAdd: "عنوان الشارع والتفاصيل", cairoGiza: "القاهرة والجيزة", otherGov: "محافظات أخرى",
+    standard: "عادي (2-3 أيام)", express: "سريع (+20 جنيه, 1-2 يوم)", shipping: "الشحن:", free: "مجاناً", qualifiedFree: "أنت مؤهل لشحن عادي مجاني!", total: "الإجمالي:", backCart: "العودة للسلة", proceedPay: "متابعة الدفع",
+    selectPay: "اختر طريقة الدفع", cardNum: "رقم الكارت", expiry: "تاريخ الانتهاء", cvv: "الرقم السري", transfer: "حول بالضبط", to: "إلى:", ipa: "عنوان إنستاباي أو رقم التليفون",
+    cod: "الدفع عند الاستلام (COD)", codFee: "بيتم إضافة 5 جنيه مصاريف خدمة للدفع عند الاستلام.", depReq: "⚠️ مطلوب دفع عربون", depDesc1: "الطلبات اللي معدية 1000 جنيه بتحتاج دفع 25% عربون لتأكيد الطلب.", depAmount: "قيمة العربون:", depDesc2: "(فريقنا هيتواصل معاك على الواتساب لتحصيل العربون بأمان).",
+    totalPay: "الإجمالي للدفع:", confirmPay: "تأكيد ودفع", backShip: "العودة للشحن", orderSucc: "تم تأكيد الطلب بنجاح!", orderIdIs: "رقم طلبك هو:", whatNext: "إيه اللي هيحصل بعد كده؟", next1: "1. هتوصلك رسالة تأكيد قريب جداً.", next2: "2. طلبك هيتشحن عن طريق الشحن", next2_2: ".", next3: "3. تقدر تتابع شحنتك برقم الطلب.",
+    contShop: "مواصلة التسوق", orOrderWa: "أو اطلب مباشرة عن طريق الواتساب:", orderWa: "اطلب عبر الواتساب",
+    footerDesc: "وجهتك الأولى للفخامة العصرية والإكسسوارات الراقية.", ourStory: "قصتنا", storeLoc: "فروعنا", followUs: "تابعنا", allRights: "© 2026 APOLLO. جميع الحقوق محفوظة.",
+    catAll: "الكل", catRings: "خواتم", catChains: "سلاسل", catBracelets: "أساور", catFrag: "عطور", catEye: "نظارات", catLeather: "جلديات", catWatches: "ساعات", catBags: "حقائب"
+  }
+};
+
+const catMap: Record<string, keyof typeof translations.en> = {
+  "ALL": "catAll", "RINGS": "catRings", "CHAINS": "catChains", "BRACELETS": "catBracelets", 
+  "FRAGRANCES": "catFrag", "EYEWEAR": "catEye", "LEATHER GOODS": "catLeather", "WATCHES": "catWatches", "BAGS": "catBags"
+};
+
 export default function Home() {
+  const [lang, setLang] = useState<"en" | "ar">("en");
+  const t = translations[lang];
+
   const [hasEntered, setHasEntered] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<string>("home");
   const [cart, setCart] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   
-  // Product Details State
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [productQuantity, setProductQuantity] = useState<number>(1);
-
-  // Toast Notification State
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const [checkoutStep, setCheckoutStep] = useState<"cart" | "shipping" | "payment_demo" | "success">("cart");
-  const [shippingZone, setShippingZone] = useState<string>("cairo"); // cairo or governorate
-  const [shippingType, setShippingType] = useState<string>("standard"); // standard or express
+  const [shippingZone, setShippingZone] = useState<string>("cairo");
+  const [shippingType, setShippingType] = useState<string>("standard");
   const [selectedPayment, setSelectedPayment] = useState<string>("Visa");
   const [demoOrderId, setDemoOrderId] = useState<string>("");
 
-  const activeClass = (view: string): string =>
-    currentView === view ? "active" : "";
+  const activeClass = (view: string): string => currentView === view ? "active" : "";
 
-  // Show Toast Animation
+  const toggleLanguage = () => setLang(lang === "en" ? "ar" : "en");
+
   const showToast = (message: string) => {
     setToastMessage(message);
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 3000);
+    setTimeout(() => setToastMessage(null), 3000);
   };
 
   const addToCart = (product: Product, quantity: number = 1) => {
     const itemsToAdd = Array(quantity).fill(product);
     setCart([...cart, ...itemsToAdd]);
-    showToast(`${quantity}x ${product.name} added to cart!`);
+    showToast(`${quantity}x ${product.name} ${lang === "en" ? "added to cart!" : "تمت الإضافة للسلة!"}`);
   };
 
   const removeFromCart = (index: number) => {
@@ -133,27 +216,19 @@ export default function Home() {
     window.scrollTo(0, 0);
   };
 
-  // Calculations
   const cartTotal = useMemo(() => cart.reduce((sum, item) => sum + item.price, 0), [cart]);
-  
-  // Shipping Logic
   const isFreeShipping = cartTotal >= 1000;
   const baseShippingCost = shippingZone === "cairo" ? 50 : 60;
   const expressSurcharge = shippingType === "express" ? 20 : 0;
   const shippingFee = isFreeShipping ? expressSurcharge : baseShippingCost + expressSurcharge;
 
-  // Payment Logic
   const codSurcharge = selectedPayment === "Cash" ? 5 : 0;
   const grandTotal = cartTotal > 0 ? cartTotal + shippingFee + codSurcharge : 0;
   
-  // Deposit Logic
   const requiresDeposit = cartTotal >= 1000 && selectedPayment === "Cash";
   const depositAmount = requiresDeposit ? Math.round(grandTotal * 0.25) : 0;
 
-  const topSellingProducts = useMemo(() => {
-    return products.filter((p) => p.isTopSelling);
-  }, []);
-
+  const topSellingProducts = useMemo(() => products.filter((p) => p.isTopSelling), []);
   const filteredProducts = useMemo(() => {
     if (selectedCategory === "ALL") return products;
     return products.filter((p) => p.category === selectedCategory);
@@ -180,7 +255,10 @@ export default function Home() {
   }
 
   return (
-    <main style={{ color: "#333", minHeight: "100vh", fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif", position: "relative" }}>
+    <main dir={lang === "ar" ? "rtl" : "ltr"} style={{ color: "#333", minHeight: "100vh", fontFamily: lang === "ar" ? "'Cairo', 'Segoe UI', sans-serif" : "'Segoe UI', Roboto, Helvetica, Arial, sans-serif", position: "relative" }}>
+      {lang === "ar" && (
+        <style dangerouslySetInnerHTML={{__html: `@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');`}} />
+      )}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -211,7 +289,7 @@ export default function Home() {
         .product-img-box img { width: 85%; height: 85%; object-fit: contain; transition: transform 0.5s ease; mix-blend-mode: multiply; }
         .product-card:hover .product-img-box img { transform: scale(1.08); }
         
-        .badge { position: absolute; top: 15px; left: 15px; background: #d4af37; color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 3px; font-weight: bold; text-transform: uppercase; z-index: 5; }
+        .badge { position: absolute; top: 15px; ${lang === "ar" ? "right: 15px;" : "left: 15px;"} background: #d4af37; color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 3px; font-weight: bold; text-transform: uppercase; z-index: 5; }
         .add-to-cart-overlay { position: absolute; bottom: -50px; left: 0; width: 100%; background: #001a33; color: #fff; padding: 12px 0; font-size: 13px; font-weight: bold; text-transform: uppercase; transition: bottom 0.3s ease; z-index: 5; }
         .product-card:hover .add-to-cart-overlay { bottom: 0; }
         .product-title { font-size: 14px; color: #001a33; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; padding: 15px 10px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -219,7 +297,7 @@ export default function Home() {
         .cat-filter { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; position: relative; z-index: 2; }
         .cat-btn { background: rgba(255,255,255,0.8); backdrop-filter: blur(5px); border: 1px solid transparent; border-radius: 99px; padding: 10px 20px; font-size: 14px; color: #333; cursor: pointer; transition: 0.3s; font-weight: bold; text-transform: uppercase; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .cat-btn.active, .cat-btn:hover { background: #001a33; color: #fff; border-color: #001a33; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(${lang === 'ar' ? '50%' : '-50%'}); } }
         .marquee-container { overflow: hidden; background: transparent; padding: 40px 0; margin-top: 40px; position: relative; z-index: 2; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
         .marquee-content { display: inline-flex; white-space: nowrap; animation: marquee 20s linear infinite; }
         .marquee-text { font-size: clamp(40px, 8vw, 80px); font-weight: 900; letter-spacing: 2px; color: transparent; -webkit-text-stroke: 1.5px #d4af37; text-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.4); margin: 0 20px; }
@@ -235,21 +313,13 @@ export default function Home() {
 
         /* ✨ Toast Notification Animation ✨ */
         .toast-notification {
-          position: fixed;
-          bottom: 80px;
-          right: 20px;
-          background: #001a33;
-          color: #d4af37;
-          padding: 15px 25px;
-          border-radius: 8px;
-          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-          z-index: 10000;
-          font-weight: bold;
-          border-left: 4px solid #d4af37;
+          position: fixed; bottom: 80px; ${lang === "ar" ? "left: 20px; border-right: 4px solid #d4af37;" : "right: 20px; border-left: 4px solid #d4af37;"}
+          background: #001a33; color: #d4af37; padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+          z-index: 10000; font-weight: bold;
           animation: slideIn 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards;
         }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes fadeOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+        @keyframes slideIn { from { transform: translateX(${lang === "ar" ? "-100%" : "100%"}); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(${lang === "ar" ? "-100%" : "100%"}); opacity: 0; } }
 
         @media (max-width: 768px) {
           .top-bar { flex-direction: column; text-align: center; gap: 5px; }
@@ -268,9 +338,7 @@ export default function Home() {
 
       {/* --- TOAST NOTIFICATION --- */}
       {toastMessage && (
-        <div className="toast-notification">
-          ✓ {toastMessage}
-        </div>
+        <div className="toast-notification">✓ {toastMessage}</div>
       )}
 
       {/* NAVBAR */}
@@ -278,44 +346,44 @@ export default function Home() {
         <div className="hero-banner">
           <div className="hero-gradient"></div>
           <div className="top-bar">
-            <div>English ⌄ &nbsp;&nbsp; EGP ⌄ &nbsp;&nbsp; Call Us: 01124419012</div>
-            <div>Free delivery on orders over <span className="text-gold" style={{ fontWeight: "bold" }}>EGP 1000</span></div>
+            <div><span onClick={toggleLanguage} style={{cursor: "pointer", fontWeight: "bold", color: "#d4af37"}}>{t.langToggle}</span> &nbsp;&nbsp;|&nbsp;&nbsp; EGP ⌄ &nbsp;&nbsp; {t.callUs} 01124419012</div>
+            <div>{t.freeDel} <span className="text-gold" style={{ fontWeight: "bold" }}>EGP 1000</span></div>
           </div>
           <nav className="nav-main">
             <h1 onClick={() => navigateToView("home")} style={{ fontSize: "32px", fontWeight: 900, cursor: "pointer", color: "#fff", letterSpacing: "2px" }}>APOLLO<span className="text-gold">.</span></h1>
             <div className="nav-links" style={{ display: "flex", gap: "40px" }}>
-              <span className={`nav-link ${activeClass("home")}`} onClick={() => navigateToView("home")}>Home</span>
-              <span className={`nav-link ${activeClass("shop")}`} onClick={() => navigateToView("shop")}>Shop</span>
-              <span className={`nav-link ${activeClass("contact")}`} onClick={() => navigateToView("contact")}>Contact Us</span>
+              <span className={`nav-link ${activeClass("home")}`} onClick={() => navigateToView("home")}>{t.home}</span>
+              <span className={`nav-link ${activeClass("shop")}`} onClick={() => navigateToView("shop")}>{t.shop}</span>
+              <span className={`nav-link ${activeClass("contact")}`} onClick={() => navigateToView("contact")}>{t.contact}</span>
             </div>
             <div style={{ display: "flex", gap: "25px", alignItems: "center", color: "#fff", cursor: "pointer" }}>
               <div onClick={() => navigateToView("checkout")} style={{ position: "relative", display: "flex", alignItems: "center", gap: "8px", fontWeight: "bold" }}>
-                <span style={{ fontSize: "20px" }}>🛒</span> CART
-                <span style={{ position: "absolute", top: "-10px", right: "-15px", background: "#d4af37", color: "#000", fontSize: "11px", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900" }}>{cart.length}</span>
+                <span style={{ fontSize: "20px" }}>🛒</span> {t.cart}
+                <span style={{ position: "absolute", top: "-10px", [lang === "ar" ? "left" : "right"]: "-15px", background: "#d4af37", color: "#000", fontSize: "11px", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900" }}>{cart.length}</span>
               </div>
             </div>
           </nav>
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center", zIndex: 10, width: "100%" }}>
-            <h2 style={{ fontSize: "clamp(30px, 5vw, 60px)", color: "#fff", fontWeight: 900, textTransform: "uppercase", letterSpacing: "4px", textShadow: "0 4px 20px rgba(0,0,0,0.8)" }}>Divine <span className="text-gold">Aesthetics</span></h2>
+            <h2 style={{ fontSize: "clamp(30px, 5vw, 60px)", color: "#fff", fontWeight: 900, textTransform: "uppercase", letterSpacing: "4px", textShadow: "0 4px 20px rgba(0,0,0,0.8)" }}>{t.divine} <span className="text-gold">{t.aesthetics}</span></h2>
           </div>
         </div>
       ) : (
         <>
           <div className="top-bar" style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(10px)" }}>
-            <div>English ⌄ &nbsp;&nbsp; EGP ⌄ &nbsp;&nbsp; Call Us: 01124419012</div>
-            <div>Free delivery on orders over <span className="text-gold" style={{ fontWeight: "bold" }}>EGP 1000</span></div>
+            <div><span onClick={toggleLanguage} style={{cursor: "pointer", fontWeight: "bold", color: "#d4af37"}}>{t.langToggle}</span> &nbsp;&nbsp;|&nbsp;&nbsp; EGP ⌄ &nbsp;&nbsp; {t.callUs} 01124419012</div>
+            <div>{t.freeDel} <span className="text-gold" style={{ fontWeight: "bold" }}>EGP 1000</span></div>
           </div>
           <nav className="nav-main" style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(0,0,0,0.1)", position: "sticky", top: 0 }}>
             <h1 onClick={() => navigateToView("home")} style={{ fontSize: "32px", fontWeight: 900, cursor: "pointer", color: "#001a33", letterSpacing: "2px" }}>APOLLO<span className="text-gold">.</span></h1>
             <div className="nav-links" style={{ display: "flex", gap: "40px" }}>
-              <span className={`nav-link ${activeClass("home")}`} style={{ color: "#333" }} onClick={() => navigateToView("home")}>Home</span>
-              <span className={`nav-link ${activeClass("shop")}`} style={{ color: "#333" }} onClick={() => navigateToView("shop")}>Shop</span>
-              <span className={`nav-link ${activeClass("contact")}`} style={{ color: "#333" }} onClick={() => navigateToView("contact")}>Contact Us</span>
+              <span className={`nav-link ${activeClass("home")}`} style={{ color: "#333" }} onClick={() => navigateToView("home")}>{t.home}</span>
+              <span className={`nav-link ${activeClass("shop")}`} style={{ color: "#333" }} onClick={() => navigateToView("shop")}>{t.shop}</span>
+              <span className={`nav-link ${activeClass("contact")}`} style={{ color: "#333" }} onClick={() => navigateToView("contact")}>{t.contact}</span>
             </div>
             <div style={{ display: "flex", gap: "25px", alignItems: "center", color: "#001a33", cursor: "pointer" }}>
               <div onClick={() => navigateToView("checkout")} style={{ position: "relative", display: "flex", alignItems: "center", gap: "8px", fontWeight: "bold" }}>
-                <span style={{ fontSize: "20px" }}>🛒</span> CART
-                <span style={{ position: "absolute", top: "-10px", right: "-15px", background: "#001a33", color: "#fff", fontSize: "11px", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900" }}>{cart.length}</span>
+                <span style={{ fontSize: "20px" }}>🛒</span> {t.cart}
+                <span style={{ position: "absolute", top: "-10px", [lang === "ar" ? "left" : "right"]: "-15px", background: "#001a33", color: "#fff", fontSize: "11px", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900" }}>{cart.length}</span>
               </div>
             </div>
           </nav>
@@ -325,13 +393,13 @@ export default function Home() {
       {/* --- HOME VIEW --- */}
       {currentView === "home" && (
         <div className="fade-in">
-          <div className="section-header"><h2>Top <span className="text-gold">Sellers</span></h2><p>Our most exclusive and demanding luxury pieces.</p></div>
+          <div className="section-header"><h2>{t.topSellers.split(' ')[0]} <span className="text-gold">{t.topSellers.split(' ').slice(1).join(' ')}</span></h2><p>{t.topDesc}</p></div>
           <div className="large-products-grid">
             {topSellingProducts.slice(0, 3).map((product) => (
               <div key={product.id} className="product-card" onClick={() => handleProductClick(product)}>
                 <div className="product-img-box large-product-img-box">
-                  <span className="badge">Hot</span><img src={product.image} alt={product.name} />
-                  <div className="add-to-cart-overlay" onClick={(e) => { e.stopPropagation(); addToCart(product); }}>Add To Cart</div>
+                  <span className="badge">{t.hot}</span><img src={product.image} alt={product.name} />
+                  <div className="add-to-cart-overlay" onClick={(e) => { e.stopPropagation(); addToCart(product); }}>{t.addCart}</div>
                 </div>
                 <h3 className="product-title">{product.name}</h3><p className="product-price">EGP {product.price}</p>
               </div>
@@ -342,7 +410,7 @@ export default function Home() {
               <div key={product.id} className="product-card" onClick={() => handleProductClick(product)}>
                 <div className="product-img-box">
                   <img src={product.image} alt={product.name} />
-                  <div className="add-to-cart-overlay" onClick={(e) => { e.stopPropagation(); addToCart(product); }}>Add To Cart</div>
+                  <div className="add-to-cart-overlay" onClick={(e) => { e.stopPropagation(); addToCart(product); }}>{t.addCart}</div>
                 </div>
                 <h3 className="product-title">{product.name}</h3><p className="product-price">EGP {product.price}</p>
               </div>
@@ -360,10 +428,12 @@ export default function Home() {
       {/* --- SHOP VIEW --- */}
       {currentView === "shop" && (
         <div className="fade-in">
-          <div className="section-header"><h2 style={{ color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)" }}>Our <span className="text-gold">Collection</span></h2><p style={{ color: "#f0f0f0", textShadow: "0 0 10px rgba(0,0,0,0.8)" }}>Browse through {products.length} exclusive items.</p></div>
+          <div className="section-header"><h2 style={{ color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)" }}>{lang === "ar" ? "تشكيلتنا" : "Our Collection"}</h2><p style={{ color: "#f0f0f0", textShadow: "0 0 10px rgba(0,0,0,0.8)" }}>{t.collDesc}</p></div>
           <div className="cat-filter">
             {ALL_CATEGORIES.map((cat) => (
-              <button key={cat} className={`cat-btn ${selectedCategory === cat ? "active" : ""}`} onClick={() => setSelectedCategory(cat)}>{cat}</button>
+              <button key={cat} className={`cat-btn ${selectedCategory === cat ? "active" : ""}`} onClick={() => setSelectedCategory(cat)}>
+                {t[catMap[cat]]}
+              </button>
             ))}
           </div>
           <div className="products-grid">
@@ -371,7 +441,7 @@ export default function Home() {
               <div key={product.id} className="product-card" onClick={() => handleProductClick(product)}>
                 <div className="product-img-box">
                   <img src={product.image} alt={product.name} />
-                  <div className="add-to-cart-overlay" onClick={(e) => { e.stopPropagation(); addToCart(product); }}>Add To Cart</div>
+                  <div className="add-to-cart-overlay" onClick={(e) => { e.stopPropagation(); addToCart(product); }}>{t.addCart}</div>
                 </div>
                 <h3 className="product-title">{product.name}</h3><p className="product-price">EGP {product.price}</p>
               </div>
@@ -384,7 +454,7 @@ export default function Home() {
       {currentView === "product" && selectedProduct && (
         <div className="fade-in" style={{ padding: "60px 40px", maxWidth: "1200px", margin: "0 auto", minHeight: "60vh", position: "relative", zIndex: 2 }}>
            <button onClick={() => navigateToView("shop")} style={{ background: "transparent", border: "none", color: "#fff", fontSize: "16px", fontWeight: "bold", cursor: "pointer", marginBottom: "20px", textShadow: "0 2px 5px rgba(0,0,0,0.5)" }}>
-             ← BACK TO SHOP
+             {t.backShop}
            </button>
            
            <div style={{ display: "flex", gap: "40px", flexWrap: "wrap", background: "rgba(255,255,255,0.95)", padding: "40px", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}>
@@ -400,16 +470,16 @@ export default function Home() {
                  
                  {/* Stock Status */}
                  <p style={{ marginBottom: "20px", fontSize: "14px", fontWeight: "bold", color: selectedProduct.inStock === false ? "#ff4444" : "#25D366" }}>
-                   {selectedProduct.inStock === false ? "❌ OUT OF STOCK" : "✓ IN STOCK AND READY TO SHIP"}
+                   {selectedProduct.inStock === false ? t.outStock : t.inStock}
                  </p>
 
                  <p style={{ color: "#555", lineHeight: "1.8", marginBottom: "30px", fontSize: "15px" }}>
-                   {selectedProduct.description || "Experience the pinnacle of modern luxury. This exclusive piece from our collection is crafted with meticulous attention to detail, designed to elevate your aesthetic and make a bold statement."}
+                   {selectedProduct.description || (lang === "ar" ? "جرب قمة الفخامة العصرية. القطعة الحصرية دي متصممة بأعلى جودة واهتمام بكل تفصيلة عشان تكمل ستايلك وتخليك مميز." : "Experience the pinnacle of modern luxury. This exclusive piece from our collection is crafted with meticulous attention to detail, designed to elevate your aesthetic and make a bold statement.")}
                  </p>
 
                  {/* Quantity Selector */}
                  <div style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "30px" }}>
-                   <span style={{ fontWeight: "bold", color: "#001a33", textTransform: "uppercase" }}>Quantity:</span>
+                   <span style={{ fontWeight: "bold", color: "#001a33", textTransform: "uppercase" }}>{t.quantity}</span>
                    <div style={{ display: "flex", border: "2px solid #eaeaea", borderRadius: "8px", overflow: "hidden" }}>
                       <button onClick={() => setProductQuantity(Math.max(1, productQuantity - 1))} style={{ padding: "10px 15px", background: "#f8f9fa", border: "none", cursor: "pointer", fontSize: "16px", fontWeight: "bold" }}>-</button>
                       <div style={{ padding: "10px 20px", background: "#fff", borderLeft: "2px solid #eaeaea", borderRight: "2px solid #eaeaea", fontWeight: "bold", display: "flex", alignItems: "center" }}>{productQuantity}</div>
@@ -423,13 +493,13 @@ export default function Home() {
                      disabled={selectedProduct.inStock === false}
                      onClick={() => addToCart(selectedProduct, productQuantity)}
                      style={{ flex: 1, minWidth: "200px", background: selectedProduct.inStock === false ? "#ccc" : "#001a33", color: "#fff", border: "none", padding: "18px", borderRadius: "99px", fontWeight: "bold", cursor: selectedProduct.inStock === false ? "not-allowed" : "pointer", textTransform: "uppercase", letterSpacing: "1px" }}>
-                     ADD TO CART
+                     {t.addCart}
                    </button>
                    <button 
                      disabled={selectedProduct.inStock === false}
                      onClick={() => { addToCart(selectedProduct, productQuantity); navigateToView("checkout"); }}
                      style={{ flex: 1, minWidth: "200px", background: selectedProduct.inStock === false ? "#ccc" : "#d4af37", color: "#fff", border: "none", padding: "18px", borderRadius: "99px", fontWeight: "bold", cursor: selectedProduct.inStock === false ? "not-allowed" : "pointer", textTransform: "uppercase", letterSpacing: "1px" }}>
-                     BUY NOW
+                     {t.buyNow}
                    </button>
                  </div>
               </div>
@@ -437,18 +507,28 @@ export default function Home() {
         </div>
       )}
 
+      {/* --- ABOUT VIEW --- */}
+      {currentView === "about" && (
+        <div className="fade-in" style={{ padding: "80px 40px", textAlign: "center", minHeight: "50vh", position: "relative", zIndex: 2 }}>
+          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)" }}>{t.aboutTitle} <span className="text-gold">APOLLO.</span></h2>
+          <div style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(10px)", padding: "40px", borderRadius: "12px", maxWidth: "700px", margin: "0 auto", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
+            <p style={{ fontSize: "16px", color: "#333", lineHeight: "1.8", fontWeight: "bold" }}>{t.aboutDesc}</p>
+          </div>
+        </div>
+      )}
+
       {/* --- CONTACT US VIEW --- */}
       {currentView === "contact" && (
         <div className="fade-in" style={{ padding: "80px 40px", textAlign: "center", minHeight: "50vh", position: "relative", zIndex: 2 }}>
-          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)" }}>Contact <span className="text-gold">Us</span></h2>
+          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)" }}>{t.contactTitle} <span className="text-gold">{t.contactUs}</span></h2>
           <div style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(10px)", padding: "40px", borderRadius: "12px", maxWidth: "600px", margin: "0 auto", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
-            <p style={{ fontSize: "16px", color: "#333", lineHeight: "1.8", fontWeight: "bold", marginBottom: "20px" }}>We're here to help! Reach out to us for any inquiries about your luxury items.</p>
-            <div style={{ background: "#f8f9fa", padding: "20px", borderRadius: "8px", border: "1px solid #eaeaea", textAlign: "left" }}>
-              <p style={{ fontSize: "18px", color: "#001a33", fontWeight: "bold", marginBottom: "10px" }}>📞 Phone / WhatsApp:</p>
-              <p style={{ fontSize: "16px", color: "#d4af37", fontWeight: "900", marginBottom: "20px" }}>01124419012</p>
+            <p style={{ fontSize: "16px", color: "#333", lineHeight: "1.8", fontWeight: "bold", marginBottom: "20px" }}>{t.contactDesc}</p>
+            <div style={{ background: "#f8f9fa", padding: "20px", borderRadius: "8px", border: "1px solid #eaeaea", textAlign: lang === "ar" ? "right" : "left" }}>
+              <p style={{ fontSize: "18px", color: "#001a33", fontWeight: "bold", marginBottom: "10px" }}>{t.phoneWa}</p>
+              <p style={{ fontSize: "16px", color: "#d4af37", fontWeight: "900", marginBottom: "20px" }} dir="ltr">01124419012</p>
               
-              <p style={{ fontSize: "18px", color: "#001a33", fontWeight: "bold", marginBottom: "10px" }}>✉️ Email:</p>
-              <p style={{ fontSize: "16px", color: "#d4af37", fontWeight: "900" }}>itsmahmoudmagdy@gmail.com</p>
+              <p style={{ fontSize: "18px", color: "#001a33", fontWeight: "bold", marginBottom: "10px" }}>{t.email}</p>
+              <p style={{ fontSize: "16px", color: "#d4af37", fontWeight: "900" }} dir="ltr">itsmahmoudmagdy@gmail.com</p>
             </div>
           </div>
         </div>
@@ -457,40 +537,37 @@ export default function Home() {
       {/* --- POLICY VIEWS (SHIPPING, RETURNS, TRACKING) --- */}
       {currentView === "shipping" && (
         <div className="fade-in" style={{ padding: "80px 40px", minHeight: "50vh", position: "relative", zIndex: 2 }}>
-          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)", textAlign: "center" }}>Shipping <span className="text-gold">Policy</span></h2>
+          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)", textAlign: "center" }}>{lang === "ar" ? "سياسة" : "Shipping"} <span className="text-gold">{lang === "ar" ? "الشحن" : "Policy"}</span></h2>
           <div style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(10px)", padding: "40px", borderRadius: "12px", maxWidth: "800px", margin: "0 auto", boxShadow: "0 10px 30px rgba(0,0,0,0.1)", lineHeight: "1.8" }}>
-            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>Delivery Times & Rates</h3>
+            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>{t.delTimes}</h3>
             <p style={{ color: "#444", marginBottom: "20px", fontWeight: "bold" }}>
-              • Orders over EGP 1000: <span className="text-gold">FREE Standard Shipping</span><br />
-              • Cairo & Giza: EGP 50 (2 to 3 Business Days)<br />
-              • Other Governorates: EGP 60 (2 to 3 Business Days)<br />
-              • Express Shipping: Add EGP 20 (1 to 2 Business Days)
+              {t.del1}<br />{t.del2}<br />{t.del3}<br />{t.del4}
             </p>
-            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>Order Processing</h3>
-            <p style={{ color: "#444", fontWeight: "bold" }}>Orders are processed within 24 hours of placement. You will receive a tracking link via SMS/Email once your order is dispatched.</p>
+            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>{t.orderProc}</h3>
+            <p style={{ color: "#444", fontWeight: "bold" }}>{t.orderProcDesc}</p>
           </div>
         </div>
       )}
 
       {currentView === "returns" && (
         <div className="fade-in" style={{ padding: "80px 40px", minHeight: "50vh", position: "relative", zIndex: 2 }}>
-          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)", textAlign: "center" }}>Returns <span className="text-gold">& Refunds</span></h2>
+          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)", textAlign: "center" }}>{t.returnsTitle} <span className="text-gold">{t.refundsTitle}</span></h2>
           <div style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(10px)", padding: "40px", borderRadius: "12px", maxWidth: "800px", margin: "0 auto", boxShadow: "0 10px 30px rgba(0,0,0,0.1)", lineHeight: "1.8" }}>
-            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>14-Day Return Policy</h3>
-            <p style={{ color: "#444", marginBottom: "20px", fontWeight: "bold" }}>You have 14 days after receiving your item to request a return or exchange. The item must be in its original condition, unworn, with tags and original packaging.</p>
-            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>Refund Process</h3>
-            <p style={{ color: "#444", fontWeight: "bold" }}>Once we receive and inspect your return, we will notify you. Approved refunds are automatically processed to your original payment method within 5-7 business days.</p>
+            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>{t.retPol}</h3>
+            <p style={{ color: "#444", marginBottom: "20px", fontWeight: "bold" }}>{t.retPolDesc}</p>
+            <h3 style={{ color: "#001a33", marginBottom: "10px" }}>{t.refProc}</h3>
+            <p style={{ color: "#444", fontWeight: "bold" }}>{t.refProcDesc}</p>
           </div>
         </div>
       )}
 
       {currentView === "tracking" && (
         <div className="fade-in" style={{ padding: "80px 40px", textAlign: "center", minHeight: "50vh", position: "relative", zIndex: 2 }}>
-          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)" }}>Order <span className="text-gold">Tracking</span></h2>
+          <h2 style={{ fontSize: "50px", fontWeight: 900, textTransform: "uppercase", marginBottom: "30px", color: "#fff", textShadow: "0 0 20px rgba(0,0,0,0.8)" }}>{t.trackOrderTitle} <span className="text-gold">{t.trackingTitle}</span></h2>
           <div style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(10px)", padding: "40px", borderRadius: "12px", maxWidth: "600px", margin: "0 auto", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
-            <p style={{ marginBottom: "20px", fontWeight: "bold", color: "#001a33" }}>Enter your Order ID to track your shipment</p>
+            <p style={{ marginBottom: "20px", fontWeight: "bold", color: "#001a33" }}>{t.enterOrderId}</p>
             <input type="text" placeholder="e.g. APOLLO-12345" className="form-input" />
-            <button onClick={() => alert("Tracking System: Your order is out for delivery and will arrive soon!")} style={{ background: "#d4af37", color: "#fff", border: "none", padding: "15px 40px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer", textTransform: "uppercase", letterSpacing: "1px", width: "100%" }}>TRACK ORDER</button>
+            <button onClick={() => alert(lang === "ar" ? "شحنتك خرجت للتوصيل وهتوصلك قريب!" : "Tracking System: Your order is out for delivery and will arrive soon!")} style={{ background: "#d4af37", color: "#fff", border: "none", padding: "15px 40px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer", textTransform: "uppercase", letterSpacing: "1px", width: "100%" }}>{t.trackOrder}</button>
           </div>
         </div>
       )}
@@ -500,9 +577,9 @@ export default function Home() {
         <div className="fade-in" style={{ padding: "60px 20px", maxWidth: "900px", margin: "0 auto", minHeight: "60vh", position: "relative", zIndex: 2 }}>
           
           {checkoutStep !== "success" && (
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "40px", background: "rgba(255,255,255,0.9)", padding: "15px 30px", borderRadius: "99px" }}>
-              <span style={{ fontWeight: "bold", color: checkoutStep === "cart" ? "#d4af37" : "#333" }}>1. Cart</span>
-              <span style={{ fontWeight: "bold", color: checkoutStep === "shipping" ? "#d4af37" : "#333" }}>2. Shipping</span>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "40px", background: "rgba(255,255,255,0.9)", padding: "15px 30px", borderRadius: "99px", flexWrap: "wrap", gap: "10px" }}>
+              <span style={{ fontWeight: "bold", color: checkoutStep === "cart" ? "#d4af37" : "#333" }}>1. {t.cart}</span>
+              <span style={{ fontWeight: "bold", color: checkoutStep === "shipping" ? "#d4af37" : "#333" }}>2. {t.shipping.replace(':', '')}</span>
               <span style={{ fontWeight: "bold", color: checkoutStep === "payment_demo" ? "#d4af37" : "#333" }}>3. Payment</span>
             </div>
           )}
@@ -512,23 +589,23 @@ export default function Home() {
             <>
               {cart.length === 0 ? (
                 <div style={{ textAlign: "center", padding: "60px 0", background: "rgba(255,255,255,0.85)", borderRadius: "12px" }}>
-                  <p style={{ fontSize: "20px", color: "#001a33", marginBottom: "20px", fontWeight: "bold" }}>Your cart is empty.</p>
-                  <button onClick={() => navigateToView("shop")} style={{ background: "#d4af37", color: "#fff", border: "none", padding: "15px 40px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer" }}>RETURN TO SHOP</button>
+                  <p style={{ fontSize: "20px", color: "#001a33", marginBottom: "20px", fontWeight: "bold" }}>{t.emptyCart}</p>
+                  <button onClick={() => navigateToView("shop")} style={{ background: "#d4af37", color: "#fff", border: "none", padding: "15px 40px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer" }}>{t.returnShop}</button>
                 </div>
               ) : (
                 <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "20px" }}>
                   <div style={{ background: "rgba(255,255,255,0.9)", borderRadius: "12px", padding: "30px" }}>
                     {cart.map((item, index) => (
                       <div key={index} style={{ display: "flex", alignItems: "center", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "20px", marginBottom: "20px" }}>
-                        <div style={{ background: "#fff", width: "80px", height: "80px", display: "flex", justifyContent: "center", alignItems: "center", marginRight: "20px", borderRadius: "8px" }}><img src={item.image} style={{ width: "80%", height: "80%", objectFit: "contain", mixBlendMode: "multiply" }} alt={item.name} /></div>
+                        <div style={{ background: "#fff", width: "80px", height: "80px", display: "flex", justifyContent: "center", alignItems: "center", margin: lang === "ar" ? "0 0 0 20px" : "0 20px 0 0", borderRadius: "8px" }}><img src={item.image} style={{ width: "80%", height: "80%", objectFit: "contain", mixBlendMode: "multiply" }} alt={item.name} /></div>
                         <div style={{ flex: 1 }}><p style={{ fontWeight: "800", color: "#001a33" }}>{item.name}</p><p className="text-gold" style={{ fontWeight: "900" }}>EGP {item.price}</p></div>
-                        <button onClick={() => removeFromCart(index)} style={{ background: "transparent", color: "#ff4444", border: "none", cursor: "pointer", fontWeight: "bold", textDecoration: "underline" }}>Remove</button>
+                        <button onClick={() => removeFromCart(index)} style={{ background: "transparent", color: "#ff4444", border: "none", cursor: "pointer", fontWeight: "bold", textDecoration: "underline" }}>{lang === "ar" ? "حذف" : "Remove"}</button>
                       </div>
                     ))}
                   </div>
-                  <div style={{ textAlign: "right", background: "rgba(255,255,255,0.95)", padding: "40px", borderRadius: "12px" }}>
-                    <p style={{ fontSize: "24px", fontWeight: "900", color: "#001a33", marginBottom: "20px" }}>Subtotal: <span className="text-gold">EGP {cartTotal}</span></p>
-                    <button onClick={() => setCheckoutStep("shipping")} style={{ background: "#001a33", color: "#fff", border: "none", padding: "18px 50px", borderRadius: "99px", fontSize: "16px", fontWeight: "900", cursor: "pointer" }}>PROCEED TO SHIPPING</button>
+                  <div style={{ textAlign: lang === "ar" ? "left" : "right", background: "rgba(255,255,255,0.95)", padding: "40px", borderRadius: "12px" }}>
+                    <p style={{ fontSize: "24px", fontWeight: "900", color: "#001a33", marginBottom: "20px" }}>{t.subtotal} <span className="text-gold">EGP {cartTotal}</span></p>
+                    <button onClick={() => setCheckoutStep("shipping")} style={{ background: "#001a33", color: "#fff", border: "none", padding: "18px 50px", borderRadius: "99px", fontSize: "16px", fontWeight: "900", cursor: "pointer" }}>{t.proceedShip}</button>
                   </div>
                 </div>
               )}
@@ -538,33 +615,33 @@ export default function Home() {
           {/* STEP 2: SHIPPING */}
           {checkoutStep === "shipping" && (
             <div style={{ background: "rgba(255,255,255,0.95)", padding: "40px", borderRadius: "12px" }}>
-              <h3 style={{ color: "#001a33", marginBottom: "20px" }}>Shipping Details</h3>
-              <input type="text" placeholder="Full Name" className="form-input" />
-              <input type="text" placeholder="Phone Number" className="form-input" />
-              <input type="text" placeholder="Street Address & Details" className="form-input" />
+              <h3 style={{ color: "#001a33", marginBottom: "20px" }}>{t.shipDetails}</h3>
+              <input type="text" placeholder={t.fullName} className="form-input" />
+              <input type="text" placeholder={t.phoneNum} className="form-input" />
+              <input type="text" placeholder={t.streetAdd} className="form-input" />
               
-              <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
-                <select className="form-input" style={{ flex: 1, marginBottom: 0 }} onChange={(e) => setShippingZone(e.target.value)} value={shippingZone}>
-                  <option value="cairo">Cairo & Giza</option>
-                  <option value="governorate">Other Governorates</option>
+              <div style={{ display: "flex", gap: "10px", marginBottom: "15px", flexWrap: "wrap" }}>
+                <select className="form-input" style={{ flex: 1, minWidth: "200px", marginBottom: 0 }} onChange={(e) => setShippingZone(e.target.value)} value={shippingZone}>
+                  <option value="cairo">{t.cairoGiza}</option>
+                  <option value="governorate">{t.otherGov}</option>
                 </select>
-                <select className="form-input" style={{ flex: 1, marginBottom: 0 }} onChange={(e) => setShippingType(e.target.value)} value={shippingType}>
-                  <option value="standard">Standard (2-3 Days)</option>
-                  <option value="express">Express (+EGP 20, 1-2 Days)</option>
+                <select className="form-input" style={{ flex: 1, minWidth: "200px", marginBottom: 0 }} onChange={(e) => setShippingType(e.target.value)} value={shippingType}>
+                  <option value="standard">{t.standard}</option>
+                  <option value="express">{t.express}</option>
                 </select>
               </div>
 
-              <div style={{ borderTop: "2px solid #eaeaea", marginTop: "20px", paddingTop: "20px", textAlign: "right" }}>
-                <p style={{ fontSize: "16px", color: "#333", marginBottom: "5px" }}>Subtotal: EGP {cartTotal}</p>
+              <div style={{ borderTop: "2px solid #eaeaea", marginTop: "20px", paddingTop: "20px", textAlign: lang === "ar" ? "left" : "right" }}>
+                <p style={{ fontSize: "16px", color: "#333", marginBottom: "5px" }}>{t.subtotal} EGP {cartTotal}</p>
                 <p style={{ fontSize: "16px", color: "#333", marginBottom: "5px" }}>
-                  Shipping: {isFreeShipping && shippingType === "standard" ? <span style={{ color: "#25D366", fontWeight: "bold" }}>FREE</span> : `EGP ${shippingFee}`}
+                  {t.shipping} {isFreeShipping && shippingType === "standard" ? <span style={{ color: "#25D366", fontWeight: "bold" }}>{t.free}</span> : `EGP ${shippingFee}`}
                 </p>
-                {isFreeShipping && <p style={{ fontSize: "12px", color: "#d4af37", fontWeight: "bold", marginBottom: "10px" }}>You qualified for Free Standard Shipping!</p>}
+                {isFreeShipping && <p style={{ fontSize: "12px", color: "#d4af37", fontWeight: "bold", marginBottom: "10px" }}>{t.qualifiedFree}</p>}
                 
-                <p style={{ fontSize: "28px", fontWeight: "900", color: "#001a33", marginBottom: "20px", marginTop: "10px" }}>Total: <span className="text-gold">EGP {cartTotal + shippingFee}</span></p>
+                <p style={{ fontSize: "28px", fontWeight: "900", color: "#001a33", marginBottom: "20px", marginTop: "10px" }}>{t.total} <span className="text-gold">EGP {cartTotal + shippingFee}</span></p>
                 
-                <button onClick={() => setCheckoutStep("cart")} style={{ background: "transparent", color: "#333", border: "none", marginRight: "20px", cursor: "pointer", textDecoration: "underline", fontWeight: "bold" }}>Back to Cart</button>
-                <button onClick={() => setCheckoutStep("payment_demo")} style={{ background: "#001a33", color: "#fff", border: "none", padding: "18px 50px", borderRadius: "99px", fontSize: "16px", fontWeight: "900", cursor: "pointer" }}>PROCEED TO PAYMENT</button>
+                <button onClick={() => setCheckoutStep("cart")} style={{ background: "transparent", color: "#333", border: "none", margin: lang === "ar" ? "0 0 0 20px" : "0 20px 0 0", cursor: "pointer", textDecoration: "underline", fontWeight: "bold" }}>{t.backCart}</button>
+                <button onClick={() => setCheckoutStep("payment_demo")} style={{ background: "#001a33", color: "#fff", border: "none", padding: "18px 50px", borderRadius: "99px", fontSize: "16px", fontWeight: "900", cursor: "pointer", marginTop: "10px" }}>{t.proceedPay}</button>
               </div>
             </div>
           )}
@@ -573,7 +650,7 @@ export default function Home() {
           {checkoutStep === "payment_demo" && (
             <div style={{ background: "#fff", padding: "40px", borderRadius: "12px", border: "2px solid #001a33" }}>
               <div style={{ textAlign: "center", marginBottom: "20px" }}>
-                <h3 style={{ color: "#001a33", fontSize: "24px", marginBottom: "10px" }}>Select Payment Method</h3>
+                <h3 style={{ color: "#001a33", fontSize: "24px", marginBottom: "10px" }}>{t.selectPay}</h3>
               </div>
 
               <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginBottom: "30px", flexWrap: "wrap" }}>
@@ -597,17 +674,17 @@ export default function Home() {
               <div style={{ maxWidth: "450px", margin: "0 auto", background: "#f8f9fa", padding: "20px", borderRadius: "8px", border: "1px solid #ddd" }}>
                 
                 {selectedPayment === "Visa" && (
-                  <div>
-                     <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold" }}>Card Number</label>
-                     <input type="text" placeholder="4000 0000 0000 0000" className="form-input" style={{ background: "#fff" }} />
+                  <div style={{textAlign: lang === "ar" ? "right" : "left"}}>
+                     <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold" }}>{t.cardNum}</label>
+                     <input type="text" placeholder="4000 0000 0000 0000" className="form-input" style={{ background: "#fff" }} dir="ltr" />
                      <div style={{ display: "flex", gap: "10px" }}>
                        <div style={{ flex: 1 }}>
-                         <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold" }}>Expiry</label>
-                         <input type="text" placeholder="MM/YY" className="form-input" style={{ background: "#fff" }} />
+                         <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold" }}>{t.expiry}</label>
+                         <input type="text" placeholder="MM/YY" className="form-input" style={{ background: "#fff" }} dir="ltr" />
                        </div>
                        <div style={{ flex: 1 }}>
-                         <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold" }}>CVV</label>
-                         <input type="text" placeholder="123" className="form-input" style={{ background: "#fff" }} />
+                         <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold" }}>{t.cvv}</label>
+                         <input type="text" placeholder="123" className="form-input" style={{ background: "#fff" }} dir="ltr" />
                        </div>
                      </div>
                   </div>
@@ -616,32 +693,32 @@ export default function Home() {
                 {selectedPayment === "InstaPay" && (
                   <div style={{ textAlign: "center" }}>
                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Instapay_logo.svg/1024px-Instapay_logo.svg.png" alt="InstaPay" style={{ height: "30px", marginBottom: "15px" }} />
-                     <p style={{ fontSize: "14px", fontWeight: "bold", marginBottom: "10px" }}>Transfer exactly <span className="text-gold">EGP {grandTotal}</span> to:</p>
-                     <p style={{ background: "#eee", padding: "10px", borderRadius: "8px", fontWeight: "bold", fontSize: "18px", letterSpacing: "1px", marginBottom: "20px" }}>01124419012</p>
-                     <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold", textAlign: "left" }}>Your InstaPay Address (IPA) or Phone</label>
-                     <input type="text" placeholder="name@instapay" className="form-input" style={{ background: "#fff" }} />
+                     <p style={{ fontSize: "14px", fontWeight: "bold", marginBottom: "10px" }}>{t.transfer} <span className="text-gold">EGP {grandTotal}</span> {t.to}</p>
+                     <p style={{ background: "#eee", padding: "10px", borderRadius: "8px", fontWeight: "bold", fontSize: "18px", letterSpacing: "1px", marginBottom: "20px" }} dir="ltr">01124419012</p>
+                     <label style={{ display: "block", marginBottom: "5px", fontSize: "14px", fontWeight: "bold", textAlign: lang === "ar" ? "right" : "left" }}>{t.ipa}</label>
+                     <input type="text" placeholder="name@instapay" className="form-input" style={{ background: "#fff", textAlign: lang === "ar" ? "right" : "left" }} dir="ltr" />
                   </div>
                 )}
 
                 {selectedPayment === "Cash" && (
                   <div style={{ textAlign: "center" }}>
                      <div style={{ fontSize: "40px", marginBottom: "10px" }}>💵</div>
-                     <p style={{ fontWeight: "bold", fontSize: "16px", marginBottom: "10px" }}>Cash on Delivery (COD)</p>
-                     <p style={{ fontSize: "14px", color: "#666", marginBottom: "10px" }}>An additional fee of <span style={{ fontWeight: "bold" }}>EGP 5</span> is applied for COD orders.</p>
+                     <p style={{ fontWeight: "bold", fontSize: "16px", marginBottom: "10px" }}>{t.cod}</p>
+                     <p style={{ fontSize: "14px", color: "#666", marginBottom: "10px" }}>{t.codFee}</p>
                      
                      {requiresDeposit && (
-                       <div style={{ background: "#fff3cd", color: "#856404", padding: "15px", borderRadius: "8px", border: "1px solid #ffeeba", marginTop: "15px", textAlign: "left" }}>
-                         <p style={{ fontWeight: "bold", marginBottom: "5px" }}>⚠️ Deposit Required</p>
-                         <p style={{ fontSize: "13px" }}>Orders over EGP 1000 require a 25% deposit to confirm the order.</p>
-                         <p style={{ fontSize: "14px", marginTop: "10px", fontWeight: "bold" }}>Deposit Amount: EGP {depositAmount}</p>
-                         <p style={{ fontSize: "12px", marginTop: "5px" }}>(Our team will contact you on WhatsApp to collect the deposit securely).</p>
+                       <div style={{ background: "#fff3cd", color: "#856404", padding: "15px", borderRadius: "8px", border: "1px solid #ffeeba", marginTop: "15px", textAlign: lang === "ar" ? "right" : "left" }}>
+                         <p style={{ fontWeight: "bold", marginBottom: "5px" }}>{t.depReq}</p>
+                         <p style={{ fontSize: "13px" }}>{t.depDesc1}</p>
+                         <p style={{ fontSize: "14px", marginTop: "10px", fontWeight: "bold" }}>{t.depAmount} EGP {depositAmount}</p>
+                         <p style={{ fontSize: "12px", marginTop: "5px" }}>{t.depDesc2}</p>
                        </div>
                      )}
                   </div>
                 )}
 
                 <div style={{ marginTop: "20px", paddingTop: "20px", borderTop: "2px solid #eaeaea", textAlign: "center" }}>
-                   <p style={{ fontSize: "20px", fontWeight: "900", color: "#001a33", marginBottom: "15px" }}>Total to Pay: <span className="text-gold">EGP {grandTotal}</span></p>
+                   <p style={{ fontSize: "20px", fontWeight: "900", color: "#001a33", marginBottom: "15px" }}>{t.totalPay} <span className="text-gold">EGP {grandTotal}</span></p>
                    <button 
                     onClick={() => {
                       const randomId = "APOLLO-" + Math.floor(10000 + Math.random() * 90000);
@@ -651,13 +728,13 @@ export default function Home() {
                     }} 
                     style={{ width: "100%", background: "#d4af37", color: "#fff", border: "none", padding: "15px", borderRadius: "99px", fontSize: "16px", fontWeight: "bold", cursor: "pointer", textTransform: "uppercase" }}
                    >
-                    CONFIRM & PAY
+                    {t.confirmPay}
                    </button>
                 </div>
               </div>
 
               <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <button onClick={() => setCheckoutStep("shipping")} style={{ background: "transparent", color: "#666", border: "none", cursor: "pointer", textDecoration: "underline", fontWeight: "bold" }}>Back to Shipping</button>
+                <button onClick={() => setCheckoutStep("shipping")} style={{ background: "transparent", color: "#666", border: "none", cursor: "pointer", textDecoration: "underline", fontWeight: "bold" }}>{t.backShip}</button>
               </div>
             </div>
           )}
@@ -666,27 +743,27 @@ export default function Home() {
           {checkoutStep === "success" && (
             <div style={{ textAlign: "center", padding: "60px 20px", background: "rgba(255,255,255,0.95)", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
               <div style={{ fontSize: "60px", color: "#25D366", marginBottom: "10px" }}>✓</div>
-              <h2 style={{ color: "#001a33", marginBottom: "15px" }}>Order Placed Successfully!</h2>
-              <p style={{ color: "#666", fontSize: "18px", marginBottom: "10px" }}>Your Order ID is: <strong style={{ color: "#d4af37" }}>{demoOrderId}</strong></p>
+              <h2 style={{ color: "#001a33", marginBottom: "15px" }}>{t.orderSucc}</h2>
+              <p style={{ color: "#666", fontSize: "18px", marginBottom: "10px" }}>{t.orderIdIs} <strong style={{ color: "#d4af37" }}>{demoOrderId}</strong></p>
               
-              <div style={{ background: "#f8f9fa", padding: "20px", borderRadius: "8px", border: "1px solid #eee", maxWidth: "500px", margin: "20px auto 30px", textAlign: "left" }}>
-                 <h4 style={{ color: "#001a33", marginBottom: "10px", textAlign: "center" }}>What happens next?</h4>
-                 <p style={{ color: "#444", fontSize: "14px", marginBottom: "10px" }}>1. You will receive a confirmation message shortly.</p>
-                 <p style={{ color: "#444", fontSize: "14px", marginBottom: "10px" }}>2. Your order will be shipped via {shippingType === "express" ? "Express" : "Standard"} Delivery.</p>
-                 <p style={{ color: "#444", fontSize: "14px" }}>3. You can track your shipment using your Order ID.</p>
+              <div style={{ background: "#f8f9fa", padding: "20px", borderRadius: "8px", border: "1px solid #eee", maxWidth: "500px", margin: "20px auto 30px", textAlign: lang === "ar" ? "right" : "left" }}>
+                 <h4 style={{ color: "#001a33", marginBottom: "10px", textAlign: "center" }}>{t.whatNext}</h4>
+                 <p style={{ color: "#444", fontSize: "14px", marginBottom: "10px" }}>{t.next1}</p>
+                 <p style={{ color: "#444", fontSize: "14px", marginBottom: "10px" }}>{t.next2} {shippingType === "express" ? (lang === "ar" ? "السريع" : "Express") : (lang === "ar" ? "العادي" : "Standard")} {t.next2_2}</p>
+                 <p style={{ color: "#444", fontSize: "14px" }}>{t.next3}</p>
               </div>
 
               <div style={{ display: "flex", gap: "15px", justifyContent: "center", flexWrap: "wrap" }}>
-                 <button onClick={() => navigateToView("tracking")} style={{ background: "#d4af37", color: "#fff", border: "none", padding: "15px 30px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer" }}>TRACK ORDER</button>
-                 <button onClick={() => navigateToView("home")} style={{ background: "#001a33", color: "#fff", border: "none", padding: "15px 30px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer" }}>CONTINUE SHOPPING</button>
+                 <button onClick={() => navigateToView("tracking")} style={{ background: "#d4af37", color: "#fff", border: "none", padding: "15px 30px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer" }}>{t.trackOrder}</button>
+                 <button onClick={() => navigateToView("home")} style={{ background: "#001a33", color: "#fff", border: "none", padding: "15px 30px", borderRadius: "99px", fontWeight: "bold", cursor: "pointer" }}>{t.contShop}</button>
               </div>
             </div>
           )}
 
           {/* WhatsApp Order Button */}
           {checkoutStep === "cart" && cart.length > 0 && (
-             <div style={{ textAlign: "right", marginTop: "20px" }}>
-                <p style={{ fontSize: "12px", color: "#fff", textShadow: "0 0 5px #000", marginBottom: "10px" }}>Or order directly via WhatsApp:</p>
+             <div style={{ textAlign: lang === "ar" ? "left" : "right", marginTop: "20px" }}>
+                <p style={{ fontSize: "12px", color: "#fff", textShadow: "0 0 5px #000", marginBottom: "10px" }}>{t.orOrderWa}</p>
                 <button
                   onClick={() => {
                     const message = cart.map((item) => `${item.name} - EGP ${item.price}`).join("%0A");
@@ -694,7 +771,7 @@ export default function Home() {
                   }}
                   style={{ background: "#25D366", color: "#fff", border: "none", padding: "15px 40px", borderRadius: "99px", fontSize: "16px", fontWeight: "900", cursor: "pointer", textTransform: "uppercase", boxShadow: "0 5px 15px rgba(37, 211, 102, 0.4)" }}
                 >
-                  ORDER VIA WHATSAPP
+                  {t.orderWa}
                 </button>
              </div>
           )}
@@ -710,23 +787,21 @@ export default function Home() {
             <h1 style={{ fontSize: "32px", fontWeight: 900, color: "#fff", marginBottom: "15px", letterSpacing: "2px" }}>
               APOLLO<span className="text-gold">.</span>
             </h1>
-            <p style={{ color: "#aaa" }}>
-              The ultimate destination for modern luxury aesthetics and premium accessories.
-            </p>
+            <p style={{ color: "#aaa" }}>{t.footerDesc}</p>
           </div>
           <div className="footer-col">
-            <h4>ABOUT US</h4>
-            <a onClick={() => navigateToView("about")}>Our Story</a>
-            <a onClick={() => navigateToView("contact")}>Contact Us</a>
+            <h4>{t.aboutUs}</h4>
+            <a onClick={() => navigateToView("about")}>{t.ourStory}</a>
+            <a onClick={() => navigateToView("contact")}>{t.contact}</a>
           </div>
           <div className="footer-col">
-            <h4>CUSTOMER CARE</h4>
-            <a onClick={() => navigateToView("shipping")}>Shipping Policy</a>
-            <a onClick={() => navigateToView("returns")}>Returns &amp; Refunds</a>
-            <a onClick={() => navigateToView("tracking")}>Track Order</a>
+            <h4>{t.customerCare}</h4>
+            <a onClick={() => navigateToView("shipping")}>{t.shippingPol}</a>
+            <a onClick={() => navigateToView("returns")}>{t.returns}</a>
+            <a onClick={() => navigateToView("tracking")}>{t.trackOrder}</a>
           </div>
           <div className="footer-col">
-            <h4>FOLLOW US</h4>
+            <h4>{t.followUs}</h4>
             <a>Instagram</a>
             <a>TikTok</a>
             <a>Facebook</a>
@@ -738,7 +813,7 @@ export default function Home() {
             borderTop: "1px solid rgba(255,255,255,0.1)", color: "#888", fontSize: "12px", marginTop: "20px",
           }}
         >
-          © 2026 APOLLO. ALL RIGHTS RESERVED.
+          {t.allRights}
         </div>
       </footer>
 
@@ -748,7 +823,7 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
         style={{
-          position: "fixed", bottom: "20px", right: "20px", background: "#25D366", color: "white",
+          position: "fixed", bottom: "20px", [lang === "ar" ? "left" : "right"]: "20px", background: "#25D366", color: "white",
           padding: "15px 20px", borderRadius: "999px", textDecoration: "none", fontWeight: "bold",
           zIndex: 9999, boxShadow: "0 5px 20px rgba(0,0,0,0.2)",
         }}
@@ -758,3 +833,5 @@ export default function Home() {
     </main>
   );
 }
+
+```
